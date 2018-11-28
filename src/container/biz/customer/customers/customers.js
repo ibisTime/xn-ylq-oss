@@ -52,7 +52,10 @@ class Customers extends React.Component {
             field: 'realName'
         }, {
             title: '累计消费',
-            field: 'amount1'
+            field: 'outAmount',
+            render: (v, data) => {
+                return data.account ? moneyFormat(data.account.amount) : '';
+            }
         }, {
             title: '账户余额',
             field: 'amount',
@@ -93,7 +96,13 @@ class Customers extends React.Component {
                 },
                 // 账户余额
                 detail: (keys, items) => {
-                    this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
+                    if (!keys || !keys.length) {
+                        showWarnMsg('请选择记录');
+                    } else if (keys.length > 1) {
+                        showWarnMsg('请选择一条记录');
+                    }else {
+                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
+                    }
                 },
                 //  报告列表
                 checklist: () => {

@@ -48,15 +48,15 @@ class Userbase extends React.Component {
             field: 'userReferee'
         }, {
             title: '所属客户',
-            field: 'companyName',
+            field: 'companyCode',
             type: 'select',
-            search: true,
             pageCode: '630115',
-            keyName: 'userId',
-            valueName: '{{realName.DATA}}-{{mobile.DATA}}',
+            keyName: 'companyCode',
+            valueName: '{{realName.DATA}}',
             searchName: 'keyword',
+            search: true,
             render: (v, data) => {
-                return data.company ? data.company.businessMan.realName : '';
+                return data.businessMan.loginName ? data.businessMan.loginName : '';
             }
         }, {
             title: '注册时间',

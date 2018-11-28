@@ -45,7 +45,7 @@ class PlatformFlows extends React.Component {
             field: 'postAmount',
             amount: true
         }, {
-            title: '创建时间',
+            title: '变动时间',
             field: 'createDatetime',
             type: 'date',
             rangedate: ['createDatetimeStart', 'createDatetimeEnd'],

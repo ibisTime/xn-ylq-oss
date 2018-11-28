@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString } from 'common/js/util';
-import DetailUtil from 'common/js/build-detail';
+import { getQueryString, moneyFormat } from 'common/js/util';
+import DetailUtil from 'common/js/NOild-detail';
 
 @Form.create()
-class BlackListDetail extends DetailUtil {
+class CustomerAddEdit extends DetailUtil {
     constructor(props) {
         super(props);
         this.code = getQueryString('code', this.props.location.search);
@@ -12,25 +12,23 @@ class BlackListDetail extends DetailUtil {
     }
     render() {
         const fields = [{
-            title: '登录账号',
-            field: 'loginName'
-        }, {
-            title: '手机号',
-            field: 'mobile',
+            title: '户名',
+            field: 'accountNumber',
             search: true
         }, {
-            title: '推荐人',
-            field: 'realName'
-        }, {
-            title: '所属客户',
-            field: 'companyName',
-            type: 'select',
-            search: true,
+            title: '账户余额',
+            field: 'amount',
             formatter: (v, data) => {
-                return data.businessMan.realName ? data.businessMan.realName : '';
+                return data ? moneyFormat(data.amount) : '';
             }
         }, {
-            title: '注册时间',
+            title: '冻结金额',
+            field: 'frozenAmount',
+            formatter: (v, data) => {
+                return data.account ? moneyFormat(data.amount) : '';
+            }
+        }, {
+            title: '创建时间',
             field: 'createDatetime',
             type: 'datetime'
         }, {
@@ -48,8 +46,10 @@ class BlackListDetail extends DetailUtil {
             key: 'userId',
             code: this.code,
             view: this.view,
-            detailCode: 805121
+            detailCode: 802321,
+            editCode: 805023
         });
     }
 }
-export default BlackListDetail;
+
+export default CustomerAddEdit;

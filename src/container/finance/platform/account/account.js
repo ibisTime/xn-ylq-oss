@@ -24,13 +24,13 @@ class Account extends React.Component {
   componentDidMount() {
     this.props.initData();
   }
-  // 平台流水
-  goFlow(accountNumber) {
-    this.props.history.push(`/platform/account/flows?code=${accountNumber}`);
+  // 账户查询
+    goAccounts(accountNumber) {
+    this.props.history.push(`/platform/account/accounts?code=${accountNumber}`);
   }
-  // 资金分布
-  goAccounts(type) {
-    this.props.history.push(`/platform/account/accounts?type=${type}`);
+  // 平台流水
+  goFlows(type) {
+    this.props.history.push(`/platform/account/flows?type=${type}`);
   }
   // 手动增发
   goAdd(currency) {
@@ -90,26 +90,16 @@ class Account extends React.Component {
     return (
       <div>
         <Spin spinning={this.props.fetching}>
-          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            <Col span={8} style={{marginBottom: '20px'}}>
-              <Card title="同盾账户" extra={
-                <Button onClick={() => this.goFlow(aliAccount.accountNumber)} type="primary">平台流水</Button>
-              }>¥{moneyFormat(aliAccount.amount || 0)}
-              </Card>
-            </Col></Row>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={8} style={{marginBottom: '20px'}}>
-              <Card title="客户账户" extra={
-                <Button onClick={() => this.goAccounts(wxAccount.accountNumber)} type="primary">账户查询</Button>
-              }>¥{moneyFormat(wxAccount.amount || 0)}
+              <Card onClick={() => this.goAccounts(wxAccount.accountNumber)} title="客户账户"
+              >¥{moneyFormat(wxAccount.amount || 0)}
               </Card>
             </Col>
             </Row>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={8} style={{marginBottom: '20px'}}>
-              <Card title="盈亏账户" extra={
-                <Button onClick={() => this.goFlow(offAccount.accountNumber)} type="primary">平台流水</Button>
-              }>¥{moneyFormat(offAccount.amount || 0)}</Card>
+              <Card title="盈亏账户"onClick={() => this.goFlows(offAccount.accountNumber)}>¥{moneyFormat(offAccount.amount || 0)}</Card>
             </Col></Row>
         </Spin>
         <Modal

@@ -9,58 +9,39 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/biz/customer/customers';
+} from '@redux/biz/customer/accountquery';
 import { listWrapper } from 'common/js/build-list';
 import { showWarnMsg, moneyFormat } from 'common/js/util';
-import { activateJUser } from 'api/user';
+import { activateUser } from 'api/user';
 
 @listWrapper(
     state => ({
-        ...state.customerCustomers,
+        ...state.customerAccountQuery,
         parentCode: state.menu.subMenuCode
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
-class CustomersList extends React.Component {
-    rockOrActive(status, code) {
-        Modal.confirm({
-            okText: '确认',
-            cancelText: '取消',
-            content: `确认${status === '0' ? '注销' : '激活'}用户？`,
-            onOk: () => {
-                this.props.doFetching();
-                return activateJUser(code).then(() => {
-                    this.props.getPageData();
-                    showWarnMsg('操作成功');
-                }).catch(() => {
-                    this.props.cancelFetching();
-                });
-            }
-        });
-    }
+class AccountQuery extends React.Component {
     render() {
         const fields = [{
-            title: '登录账号',
-            field: 'loginName'
-        }, {
-            title: '手机号',
-            field: 'mobile',
+            title: '户名',
+            field: 'accountNumber',
             search: true
-        }, {
-            title: '姓名',
-            field: 'realName'
-        }, {
-            title: '累计消费',
-            field: 'amount1'
         }, {
             title: '账户余额',
             field: 'amount',
             render: (v, data) => {
-                return data.account ? moneyFormat(data.account.amount) : '';
+                return data ? moneyFormat(data.amount) : '';
             }
         }, {
-            title: '注册时间',
+            title: '冻结金额',
+            field: 'frozenAmount',
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
+        }, {
+            title: '创建时间',
             field: 'createDatetime',
             type: 'datetime'
         }, {
@@ -76,41 +57,27 @@ class CustomersList extends React.Component {
         return this.props.buildList({
             fields,
             rowKey: 'userId',
-            pageCode: 630115,
-            searchParams: {
-                companyCode: ''
-            },
-            btnEvent: {
-                // 添加备注
-                addRemark: (keys, items) => {
+            pageCode: 802300,
+            buttons: [{
+                code: 'detail',
+                name: '详情',
+                handler: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    }else {
-                        this.props.history.push(`/customer/customers/addedit?code=${keys[0]}`);
+                    } else{
+                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
                     }
-                },
-                // 账户余额
-                detail: (keys, items) => {
-                    this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
-                },
-                //  报告列表
-                checklist: () => {
-                    this.props.history.push(`/customer/customers/reportlist/reportlibrary`);
-                },
-                // 注销
-                rock: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else {
-                        this.rockOrActive(items[0].status, keys[0]);
-                    }
-                }}
+                }
+            }, {
+                code: 'export',
+                name: '导出',
+                check: false
+            }
+            ]
         });
     }
 }
 
-export default CustomersList;
+export default AccountQuery;

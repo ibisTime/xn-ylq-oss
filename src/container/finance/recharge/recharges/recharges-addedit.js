@@ -41,11 +41,10 @@ class RechargesAddEdit extends DetailUtil {
         type: 'NOT_P'
       },
       dict: [
-        ['currency', 'currency'],
         ['type', 'account_type']
       ],
       keyName: 'accountNumber',
-      valueName: '{{mobile.DATA}}-{{typeName.DATA}}-{{currencyName.DATA}}',
+      valueName: '{{mobile.DATA}}-{{typeName.DATA}}',
       searchName: 'mobileForQuery'
     }, {
       title: '充值金额',

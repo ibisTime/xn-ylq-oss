@@ -32,7 +32,7 @@ class Rules extends React.Component {
     }];
     return this.props.buildList({
       fields,
-      pageCode: 623175,
+      pageCode: 623915,
       rowKey: 'id',
       searchParams: {
         type: 'WITH'

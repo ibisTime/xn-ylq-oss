@@ -59,7 +59,7 @@ class BlackList extends React.Component {
             valueName: '{{realName.DATA}}-{{mobile.DATA}}',
             searchName: 'keyword',
             render: (v, data) => {
-                return data.company ? data.company.businessMan.realName : '';
+                return data.businessMan.realName ? data.businessMan.realName : '';
             }
         }, {
             title: '注册时间',

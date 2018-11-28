@@ -34,8 +34,8 @@ class SysParamAddEdit extends DetailUtil {
       key: 'id',
       code: this.code,
       view: this.view,
-      detailCode: '630046',
-      editCode: '630042'
+      detailCode: '623916',
+      editCode: '623910'
     });
   }
 }

@@ -11,7 +11,7 @@ import {
     setSearchData
 } from '@redux/biz/customer/accountquery';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
+import { showWarnMsg, moneyFormat } from 'common/js/util';
 import { activateUser } from 'api/user';
 
 @listWrapper(
@@ -23,22 +23,6 @@ import { activateUser } from 'api/user';
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class AccountQuery extends React.Component {
-    rockOrActive(status, code) {
-        Modal.confirm({
-            okText: '确认',
-            cancelText: '取消',
-            content: `确认${status === '0' ? '注销' : '激活'}用户？`,
-            onOk: () => {
-                this.props.doFetching();
-                return activateUser(code).then(() => {
-                    this.props.getPageData();
-                    showWarnMsg('操作成功');
-                }).catch(() => {
-                    this.props.cancelFetching();
-                });
-            }
-        });
-    }
     render() {
         const fields = [{
             title: '户名',
@@ -46,10 +30,16 @@ class AccountQuery extends React.Component {
             search: true
         }, {
             title: '账户余额',
-            field: 'userReferee'
+            field: 'amount',
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
             title: '冻结金额',
-            field: 'nickname'
+            field: 'frozenAmount',
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
             title: '创建时间',
             field: 'createDatetime',
@@ -68,6 +58,9 @@ class AccountQuery extends React.Component {
             fields,
             rowKey: 'userId',
             pageCode: 802300,
+            searchParams: {
+                type: 'B'
+            },
             btnEvent: {
                 // 账户查询
                 accounts: (keys, items) => {
@@ -79,28 +72,14 @@ class AccountQuery extends React.Component {
                         this.props.history.push(`/user/users/accounts?code=${keys[0]}`);
                     }
                 },
-                // 激活
-                active: (keys, items) => {
+                // 详情
+                detail: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    } else if (items[0].status === '0') {
-                        showWarnMsg('该用户已被激活');
                     } else {
-                        this.rockOrActive(items[0].status, keys[0]);
-                    }
-                },
-                // 注销
-                rock: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else if (items[0].status !== '0') {
-                        showWarnMsg('该用户已被注销');
-                    } else {
-                        this.rockOrActive(items[0].status, keys[0]);
+                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
                     }
                 }
             }

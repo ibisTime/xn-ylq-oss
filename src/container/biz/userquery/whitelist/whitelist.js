@@ -51,7 +51,7 @@ class WhiteList extends React.Component {
             field: 'realName'
         }, {
             title: '所属客户',
-            field: 'companyName',
+            field: 'realName',
             type: 'select',
             search: true,
             pageCode: '630115',
@@ -59,7 +59,7 @@ class WhiteList extends React.Component {
             valueName: '{{realName.DATA}}-{{mobile.DATA}}',
             searchName: 'keyword',
             render: (v, data) => {
-                return data.company ? data.company.businessMan.realName : '';
+                return data.businessMan.realName ? data.businessMan.realName : '';
             }
         }, {
             title: '注册时间',
