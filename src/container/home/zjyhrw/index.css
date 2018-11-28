@@ -1,0 +1,19 @@
+.zjyhrw-wrapper {
+  padding: 18px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+.zjyhrw-wrapper .notice-title {
+  font-size: 18px;
+  color: #888;
+}
+.zjyhrw-wrapper .notice-title img {
+  width: 21px;
+  margin-right: 10px;
+}
+.zjyhrw-wrapper .notice-table-wrapper {
+  margin-top: 18px;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  border-bottom: none;
+}

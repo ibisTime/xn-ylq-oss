@@ -1,0 +1,35 @@
+.txclz-wrapper {
+  line-height: 1;
+  color: #FFFFFF;
+  background: url('./green.png') center no-repeat;
+  background-size: cover;
+  border-radius: 8px;
+  padding: 20px;
+}
+.txclz-wrapper .title {
+  font-size: 16px;
+  letter-spacing: 0;
+  text-align: center;
+}
+.txclz-wrapper .title img {
+  width: 22px;
+  margin-right: 5px;
+  vertical-align: text-top;
+}
+.txclz-wrapper .price-content {
+  margin-top: 18.5px;
+  margin-bottom: 25.5px;
+  text-align: center;
+  font-size: 38px;
+}
+.txclz-wrapper .price-content label {
+  font-size: 16px;
+  padding-right: 6px;
+}
+.txclz-wrapper .tip {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+}

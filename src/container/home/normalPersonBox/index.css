@@ -1,0 +1,30 @@
+.normal-person-wrapper {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  padding: 26px 30px;
+  border-radius: 8px;
+  background: #fff;
+}
+.normal-person-wrapper img {
+  width: 98px;
+  flex: 0 0 98px;
+}
+.normal-person-wrapper .normal-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding-left: 31px;
+  color: #333;
+}
+.normal-person-wrapper .normal-content .normal-title {
+  font-size: 16px;
+}
+.normal-person-wrapper .normal-content .normal-amount {
+  font-size: 36px;
+}
+.normal-person-wrapper .normal-content .normal-amount label {
+  font-size: 24px;
+  color: #151515;
+}

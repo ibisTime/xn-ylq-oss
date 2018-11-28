@@ -1,0 +1,32 @@
+.multiple-wrapper {
+  padding: 10px 26px;
+  line-height: 1;
+  color: #FFFFFF;
+  background: url('./red.png') center no-repeat;
+  background-size: cover;
+  border-radius: 8px;
+  color: #fff;
+}
+.multiple-wrapper .comp-item {
+  display: flex;
+  align-items: flex-end;
+  font-size: 16px;
+  padding: 5px 0;
+  margin-bottom: 17px;
+}
+.multiple-wrapper .comp-item:last-child {
+  margin-bottom: 0;
+}
+.multiple-wrapper .comp-item .item-title {
+  line-height: 1.4;
+  width: 6em;
+}
+.multiple-wrapper .comp-item .item-price {
+  flex: 1;
+  text-align: right;
+  font-size: 30px;
+}
+.multiple-wrapper .comp-item .item-price span {
+  font-size: 14px;
+  padding-right: 4px;
+}
