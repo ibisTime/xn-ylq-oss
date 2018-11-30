@@ -10,7 +10,7 @@ import {
   setSearchData
 } from '@redux/finance/platform/flows';
 import { listWrapper } from 'common/js/build-list';
-import { dateTimeFormat } from 'common/js/util';
+import { dateTimeFormat, moneyFormat, showWarnMsg } from 'common/js/util';
 
 @listWrapper(
   state => ({
@@ -20,30 +20,40 @@ import { dateTimeFormat } from 'common/js/util';
   { setTableData, clearSearchParam, doFetching, setBtnList,
     cancelFetching, setPagination, setSearchParam, setSearchData }
 )
-class PlatformFlows extends React.Component {
+    // 平台流水详情
+class Flows extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'relaNameForQuery',
-            render: (v, d) => d.realName,
+            field: 'realName',
             search: true
         }, {
             title: '业务类型',
             field: 'bizType',
+            key: 'biz_type',
             type: 'select',
-            key: 'biz_type'
+            search: true
         }, {
             title: '变动金额',
-            field: 'transAmount',
-            amount: true
+            field: 'transAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
             title: '变动前金额',
-            field: 'preAmount',
-            amount: true
+            field: 'preAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
             title: '变动后金额',
-            field: 'postAmount',
-            amount: true
+            field: 'postAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
             title: '变动时间',
             field: 'createDatetime',
@@ -54,6 +64,7 @@ class PlatformFlows extends React.Component {
             title: '状态',
             field: 'status',
             type: 'select',
+            search: true,
             key: 'jour_status'
         }, {
             title: '备注',
@@ -63,9 +74,20 @@ class PlatformFlows extends React.Component {
             fields,
             pageCode: 802320,
             searchParams: {
+                accountType: 'B'
+            },
+            // 流水详情
+            detail: (keys, items) => {
+                if (!keys || !keys.length) {
+                    showWarnMsg('请选择记录');
+                } else if (keys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                } else{
+                    this.props.history.push(`/platform/flows/addedit?detail=1&v=1&code=${keys[0]}`);
+                }
             }
         });
     }
 }
 
-export default PlatformFlows;
+export default Flows;

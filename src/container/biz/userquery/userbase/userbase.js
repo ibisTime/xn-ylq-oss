@@ -45,7 +45,7 @@ class Userbase extends React.Component {
             search: true
         }, {
             title: '推荐人',
-            field: 'userReferee'
+            field: 'realName'
         }, {
             title: '所属客户',
             field: 'companyCode',

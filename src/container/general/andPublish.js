@@ -11,7 +11,6 @@ import {
     setSearchData
 } from '@redux/general/andpublish';
 import { listWrapper } from 'common/js/build-list';
-import fetch from 'common/js/fetch';
 import { showWarnMsg, moneyFormat, showSucMsg, getUserId } from 'common/js/util';
 
 @listWrapper(

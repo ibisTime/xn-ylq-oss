@@ -100,6 +100,10 @@ const ROUTES = [
   {
     path: '/platform/flows', component: asyncComponent(() => import('container/finance/platform/flows/flows'))
   },
+    // 财务管理 -- 平台账户 -- 流水查询--流水详情
+    {
+        path: '/platform/flows/addedit', component: asyncComponent(() => import('container/finance/platform/flows/flow-detail'))
+    },
   // 财务管理 -- 充值管理 -- 线下充值
   {
     path: '/recharge/recharges', component: asyncComponent(() => import('container/finance/recharge/recharges/recharges'))
@@ -206,7 +210,7 @@ const ROUTES = [
         path: '/customer/customers/addedit', component: asyncComponent(() => import('container/biz/customer/customer-addedit/customer-addedit'))
     }, // 客户管理-账户余额
     {
-        path: '/customer/customers/detail', component: asyncComponent(() => import('container/biz/customer/customer-detail/customer-detail'))
+        path: '/customer/customers/detail', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery-detail'))
     },
     // 业务管理--客户管理--开子账号
     {
@@ -215,6 +219,10 @@ const ROUTES = [
     // 业务管理--客户管理--账户查询
     {
         path: '/customer/accountquery', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery'))
+    },
+    // 业务管理--客户管理--账户查询-流水查询
+    {
+        path: '/customer/accountquery/detail', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery-detail'))
     },
     // 业务管理--用户查询--用户库
     {

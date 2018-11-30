@@ -26,7 +26,7 @@ class AccountQuery extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'accountNumber',
+            field: 'realName',
             search: true
         }, {
             title: '账户余额',
@@ -56,7 +56,7 @@ class AccountQuery extends React.Component {
         }];
         return this.props.buildList({
             fields,
-            rowKey: 'userId',
+            rowKey: 'accountNumber',
             pageCode: 802300,
             searchParams: {
                 type: 'B'
@@ -79,7 +79,7 @@ class AccountQuery extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
+                        this.props.history.push(`/customer/accountquery/detail?accountNumber=${keys[0]}`);
                     }
                 }
             }

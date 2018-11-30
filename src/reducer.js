@@ -43,8 +43,12 @@ import { customerCustomers } from './redux/biz/customer/customers';
 import { customerReportLibrary } from './redux/biz/customer/reportlist/reportlibrary';
 // 客户管理--客户查询
 import { customerAccountQuery } from './redux/biz/customer/accountquery';
+// 客户管理--客户查询--流水查询
+import { accountQueryDetail } from './redux/biz/customer/accountquerydetail';
 // 客户管理--开子账号
 import { customerSubAccount } from './redux/biz/customer/subaccount';
+// 客户管理--客户查询--详情
+import { customerCustomersDetail } from './redux/biz/customer/customersdetail';
 // 用户查询--用户库
 import { userQueryUserBase } from './redux/biz/userquery/userbase';
 // 用户查询--用户库--添加备注
@@ -110,5 +114,7 @@ export default combineReducers({
     generalAndPublish,
     generalAndPublishAddEdit,
     generalIosPublish,
-    generalIosPublishAddEdit
+    generalIosPublishAddEdit,
+    accountQueryDetail,
+    customerCustomersDetail
 });

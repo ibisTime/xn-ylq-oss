@@ -23,11 +23,6 @@ class SysParamAddEdit extends DetailUtil {
     }, {
       title: '参数值',
       field: 'cvalue'
-    }, {
-      title: '最近修改时间',
-      field: 'updateDatetime',
-      type: 'datetime',
-      readonly: true
     }];
     return this.buildDetail({
       fields,

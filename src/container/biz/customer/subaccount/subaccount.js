@@ -1,86 +1,89 @@
 import React from 'react';
-import { Modal } from 'antd';
-import {
-    setTableData,
-    setPagination,
-    setBtnList,
-    setSearchParam,
-    clearSearchParam,
-    doFetching,
-    cancelFetching,
-    setSearchData
-} from '@redux/biz/user/users';
-import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg } from 'common/js/util';
-import { activateUser } from 'api/user';
+import { Form } from 'antd';
+import { getQueryString } from 'common/js/util';
+import DetailUtil from 'common/js/build-detail';
 
-const typeDict = {
-    'P': '平台',
-    'O': '产权',
-    'M': '养护',
-    'A': '代理商',
-    'S': '业务员',
-    'U': 'C端用户'
-};
-
-@listWrapper(
-    state => ({
-        ...state.customerSubAccount,
-        parentCode: state.menu.subMenuCode
-    }),
-    { setTableData, clearSearchParam, doFetching, setBtnList,
-        cancelFetching, setPagination, setSearchParam, setSearchData }
-)
-class Subaccount extends React.Component {
-   render() {
+@Form.create()
+class RoleAddEdit extends DetailUtil {
+    constructor(props) {
+        super(props);
+        this.code = getQueryString('code', this.props.location.search);
+        this.view = !!getQueryString('v', this.props.location.search);
+    }
+    render() {
         const fields = [{
             title: '姓名',
-            field: 'name',
-            input: true
+            field: 'realName',
+            required: true
         }, {
             title: '手机号',
             field: 'mobile',
-            search: true
-        }, {
-            title: '推荐人',
-            field: 'userRefree',
-            search: true,
-            type: 'select'
-
+            required: true
         }, {
             title: '借条模块',
-            field: 'nickname',
-            search: true,
-            type: 'select'
+            field: 'isJt',
+            type: 'select',
+            data: [{
+                key: '1',
+                value: '是'
+            }, {
+                key: '0',
+                value: '否'
+            }],
+            keyName: 'key',
+            valueName: 'value',
+            required: true
         }, {
             title: '风控模块',
-            field: 'nickname',
-            search: true,
-            type: 'select'
+            field: 'isFk',
+            type: 'select',
+            data: [{
+                key: '1',
+                value: '是'
+            }, {
+                key: '0',
+                value: '否'
+            }],
+            keyName: 'key',
+            valueName: 'value',
+            required: true
         }, {
             title: '导流模块',
-            field: 'nickname',
-            search: true,
-            type: 'select'
+            field: 'isDl',
+            type: 'select',
+            data: [{
+                key: '1',
+                value: '是'
+            }, {
+                key: '0',
+                value: '否'
+            }],
+            keyName: 'key',
+            valueName: 'value',
+            required: true
         }, {
             title: '预充值',
-            field: 'nickname',
-            search: true
-        }, {
+            field: 'precharge',
+            required: true
+        },
+         {
             title: '登录名',
-            field: 'nickname',
-            search: true
+            field: 'loginName',
+             required: true
         }, {
             title: '初始登录密码',
-            field: 'nickname',
-            search: true
+            field: 'loginPwd',
+                type: 'password',
+                required: true
         }];
-        return this.props.buildList({
+        return this.buildDetail({
             fields,
-            rowKey: 'userId',
-            pageCode: 805120
+            code: this.code,
+            view: this.view,
+            addCode: 630100,
+            editCode: 805025
         });
     }
 }
 
-export default Subaccount;
+export default RoleAddEdit;

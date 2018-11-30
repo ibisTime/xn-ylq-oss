@@ -23,7 +23,7 @@ class BlackListDetail extends DetailUtil {
             field: 'realName'
         }, {
             title: '所属客户',
-            field: 'companyName',
+            field: 'realName',
             type: 'select',
             search: true,
             formatter: (v, data) => {

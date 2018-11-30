@@ -46,61 +46,18 @@ class Account extends React.Component {
       required: true,
       message: '必填字段'
     }];
-    if (amount) {
-      rules.push({
-        pattern: /(^[1-9](,\d{3}|[0-9])*(\.\d{1,2})?$)|([0])/,
-        message: '金额必须>=0，且小数点后最多2位'
-      });
-    }
-    const props = {
-      rules,
-      title,
-      field,
-      label: title,
-      getFieldDecorator: this.props.form.getFieldDecorator,
-      getFieldError: this.props.form.getFieldError,
-      getFieldValue: this.props.form.getFieldValue
-    };
-    return <CInput key={field} {...props} />;
-  }
-  // 页面提交
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        this.setState({ btnFetching: true });
-        values.updater = getUserId();
-        values.amount *= 1000;
-        values.currency = this.currency;
-        fetch(802342, values).then(() => {
-          this.props.initData();
-          showSucMsg('操作成功');
-          this.setState({
-            btnFetching: false,
-            visible: false
-          });
-        }).catch(() => this.setState({ btnFetching: false }));
-      }
-    });
   }
   render() {
     const { visible, btnFetching } = this.state;
-    const { aliAccount, wxAccount, offAccount, aClientAccount, oClientAccount,
-      mClientAccount, cClientAccount, bClientAccount, cnyAccount, tppAccount, jfAccount } = this.props;
+    const { cnyAccount } = this.props;
     return (
       <div>
         <Spin spinning={this.props.fetching}>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={8} style={{marginBottom: '20px'}}>
-              <Card onClick={() => this.goAccounts(wxAccount.accountNumber)} title="客户账户"
-              >¥{moneyFormat(wxAccount.amount || 0)}
-              </Card>
+              <Card title="盈亏账户"onClick={() => this.goFlows(cnyAccount.accountNumber)}>¥{moneyFormat(cnyAccount.amount || 0)}</Card>
             </Col>
             </Row>
-            <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            <Col span={8} style={{marginBottom: '20px'}}>
-              <Card title="盈亏账户"onClick={() => this.goFlows(offAccount.accountNumber)}>¥{moneyFormat(offAccount.amount || 0)}</Card>
-            </Col></Row>
         </Spin>
         <Modal
           className="build-modal-detail"

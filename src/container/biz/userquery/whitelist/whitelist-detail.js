@@ -23,13 +23,9 @@ class WhiteListDetail extends DetailUtil {
             field: 'realName'
         }, {
             title: '所属客户',
-            field: 'companyName',
+            field: 'realName',
             type: 'select',
             search: true,
-            pageCode: '630115',
-            keyName: 'userId',
-            valueName: '{{realName.DATA}}-{{mobile.DATA}}',
-            searchName: 'keyword',
             formatter: (v, data) => {
                 return data.businessMan.realName ? data.businessMan.realName : '';
             }

@@ -15,56 +15,31 @@ class FlowsAddedit extends DetailUtil {
       title: '流水编号',
       field: 'code'
     }, {
-      title: '户名',
-      field: 'realName'
-    }, {
-      title: '账号',
-      field: 'accountNumber'
-    }, {
-      title: '币种',
-      field: 'currency',
-      type: 'select',
-      key: 'currency'
-    }, {
-      title: '渠道',
-      field: 'channelType',
-      type: 'select',
-      key: 'channel_type'
-    }, {
       title: '业务类型',
-      field: 'bizType',
-      type: 'select',
-      key: 'biz_type'
+        field: 'bizType',
+        type: 'select',
+        key: 'biz_type'
     }, {
-      title: '生成说明',
-      field: 'bizNote'
+        title: '变动金额',
+        field: 'transAmountString',
+        amount: true
     }, {
-      title: '变动金额',
-      field: 'transAmountString',
-      amount: true
+        title: '变动前金额',
+        field: 'preAmountString',
+        amount: true
     }, {
-      title: '变动前金额',
-      field: 'preAmountString',
-      amount: true
+        title: '变动后金额',
+        field: 'postAmountString',
+        amount: true
     }, {
-      title: '变动后金额',
-      field: 'postAmountString',
-      amount: true
+        title: '变动时间',
+        field: 'createDatetime',
+        type: 'datetime'
     }, {
       title: '状态',
       field: 'status',
       type: 'select',
-      key: 'jour_status'
-    }, {
-      title: '创建时间',
-      field: 'createDatetime',
-      type: 'datetime'
-    }, {
-      title: '关联单号',
-      field: 'refNo'
-    }, {
-      title: '拟对账时间',
-      field: 'workDate'
+      key: 'user_status'
     }, {
       title: '对账人',
       field: 'checkUser'
@@ -73,16 +48,8 @@ class FlowsAddedit extends DetailUtil {
       field: 'checkDatetime',
       type: 'datetime'
     }, {
-      title: '调账人',
-      field: 'adjustUser'
-    }, {
-      title: '调账时间',
-      field: 'adjustDatetime',
-      type: 'datetime'
-    }, {
-      title: '备注',
-      field: 'remark',
-      maxlength: 250
+        title: '对应订单编号',
+        field: 'refNo'
     }];
     return this.buildDetail({
       fields,

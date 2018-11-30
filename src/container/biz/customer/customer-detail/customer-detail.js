@@ -1,60 +1,93 @@
 import React from 'react';
-import { Form } from 'antd';
-import { getQueryString, moneyFormat } from 'common/js/util';
-import DetailUtil from 'common/js/build-detail';
+import {
+    setTableData,
+    setPagination,
+    setBtnList,
+    setSearchParam,
+    clearSearchParam,
+    doFetching,
+    cancelFetching,
+    setSearchData
+} from '@redux/biz/customer/customersdetail';
+import { listWrapper } from 'common/js/build-list';
+import { dateTimeFormat, moneyFormat, showWarnMsg } from 'common/js/util';
 
-@Form.create()
-class CustomerAddEdit extends DetailUtil {
-    constructor(props) {
-        super(props);
-        this.code = getQueryString('code', this.props.location.search);
-        this.view = !!getQueryString('v', this.props.location.search);
-    }
+@listWrapper(
+    state => ({
+        ...state.customerCustomersDetail,
+        parentCode: state.menu.subMenuCode
+    }),
+    { setTableData, clearSearchParam, doFetching, setBtnList,
+        cancelFetching, setPagination, setSearchParam, setSearchData }
+)
+    // 平台流水详情
+class Flows extends React.Component {
     render() {
         const fields = [{
-            field: 'kind',
-            value: 1,
-            hidden: true
+            title: '户名',
+            field: 'realName',
+            search: true
         }, {
-            title: '所属用户',
-            field: 'remark',
-            maxlength: 250
+            title: '业务类型',
+            field: 'bizType',
+            key: 'biz_type',
+            type: 'select',
+            search: true
         }, {
-            title: '账号',
-            field: 'loginName'
+            title: '变动金额',
+            field: 'transAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
         }, {
-           title: '状态',
+            title: '变动前金额',
+            field: 'preAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
+        }, {
+            title: '变动后金额',
+            field: 'postAmountString',
+            amount: true,
+            render: (v, data) => {
+                return data ? moneyFormat(data.amount) : '';
+            }
+        }, {
+            title: '变动时间',
+            field: 'createDatetime',
+            type: 'date',
+            rangedate: ['createDatetimeStart', 'createDatetimeEnd'],
+            render: dateTimeFormat
+        }, {
+            title: '状态',
             field: 'status',
             type: 'select',
-            key: 'user_status'
+            search: true,
+            key: 'jour_status'
         }, {
-            title: '创建时间',
-            field: 'createDatetime',
-            type: 'datetime'
-        }, {
-            title: '账户余额',
-            field: 'amount',
-            formatter: (v, data) => {
-                return data.account ? moneyFormat(data.account.amount) : '';
-            }
-        }, {
-            title: '冻结金额',
-            field: 'frozenAmount',
-            formatter: (v, data) => {
-                return data.account ? moneyFormat(data.account.amount) : '';
-            }
-        }, {
-            title: '资金流水',
-            field: 'code'
+            title: '备注',
+            field: 'remark'
         }];
-        return this.buildDetail({
+        return this.props.buildList({
             fields,
-            key: 'userId',
-            code: this.code,
-            view: this.view,
-            detailCode: 630117
+            pageCode: 802320,
+            searchParams: {
+                accountType: 'B'
+            },
+            // 流水详情
+            detail: (keys, items) => {
+                if (!keys || !keys.length) {
+                    showWarnMsg('请选择记录');
+                } else if (keys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                } else{
+                    this.props.history.push(`/platform/flows/addedit?detail=1&v=1&code=${keys[0]}`);
+                }
+            }
         });
     }
 }
 
-export default CustomerAddEdit;
+export default Flows;

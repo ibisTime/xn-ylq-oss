@@ -50,7 +50,7 @@ class WithdrawAddedit extends DetailUtil {
       type: 'select',
       key: 'channel_type'
     }, {
-      field: 'payCardInfo',
+      field: 'channelBank',
       title: '银行类型'
     }, {
       field: 'payCardNo',

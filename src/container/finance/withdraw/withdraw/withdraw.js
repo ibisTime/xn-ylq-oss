@@ -34,8 +34,8 @@ class Withdraw extends React.Component {
       key: 'account_type',
       search: true
     }, {
-      field: 'payCardInfo',
-      title: '银行类型'
+        field: 'channelBank',
+        title: '银行类型'
     }, {
       field: 'payCardNo',
       title: '银行卡号'
@@ -118,6 +118,7 @@ class Withdraw extends React.Component {
       btnEvent,
       pageCode: 802355,
       searchParams: {
+         type: 'B',
         channelType: 90
       }
     });

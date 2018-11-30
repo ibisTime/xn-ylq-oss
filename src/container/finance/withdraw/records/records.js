@@ -34,7 +34,7 @@ class Records extends React.Component {
       key: 'account_type',
       search: true
     }, {
-      field: 'payCardInfo',
+      field: 'channelBank',
       title: '银行类型'
     }, {
       field: 'payCardNo',
@@ -96,6 +96,7 @@ class Records extends React.Component {
       fields,
       pageCode: 802355,
       searchParams: {
+          type: 'B',
         channelType: 90
       }
     });
