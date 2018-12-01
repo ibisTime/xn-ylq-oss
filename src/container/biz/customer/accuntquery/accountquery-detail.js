@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button} from 'antd';
+import { Button } from 'antd';
 import {
+    initData,
     setTableData,
     setPagination,
     setBtnList,
@@ -10,13 +11,13 @@ import {
     cancelFetching,
     setSearchData
 } from '@redux/biz/customer/accountquerydetail';
+import fetch from 'common/js/fetch';
 import { listWrapper } from 'common/js/build-list';
-import { dateTimeFormat, showWarnMsg, getQueryString } from 'common/js/util';
-
+import {getQueryString, moneyFormat, dateTimeFormat} from 'common/js/util';
 @listWrapper(
     state => ({
         ...state.accountQueryDetail,
-        parentCode: state.menu.subMenuCode
+        parentCode: state.menu.subMenuCode,
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
         cancelFetching, setPagination, setSearchParam, setSearchData }
@@ -24,17 +25,39 @@ import { dateTimeFormat, showWarnMsg, getQueryString } from 'common/js/util';
 class accountQuery extends React.Component {
     constructor(props) {
         super(props);
-        this.accountNumber = getQueryString('accountNumber', this.props.location.search) || '';
         this.userId = getQueryString('userId', this.props.location.search) || '';
+        this.state = {
+            userData: {
+                realName: '',
+                accountNumber: '',
+                createDatetime: '',
+                amount: '',
+                frozenAmount: ''
+            }
+        };
+    }
+    componentDidMount() {
+        // 直接请求
+        this.props.doFetching();// loading显示
+        Promise.all([
+            fetch(802301, {
+                userId: this.userId,
+                type: 'B'
+            })
+        ]).then(([accountData]) => {
+            this.setState({
+                userData: accountData[0]
+            });
+            this.props.cancelFetching();// loading隐藏
+        }).catch(this.props.cancelFetching);
     }
     goBack = () => {
         this.props.history.go(-1);
     }
     render() {
         const fields = [{
-            title: '户名',
-            field: 'relaNameForQuery',
-            render: (v, d) => d.realName
+            title: '流水编号',
+            field: 'code'
         }, {
             title: '业务类型',
             field: 'bizType',
@@ -67,22 +90,45 @@ class accountQuery extends React.Component {
             title: '备注',
             field: 'remark'
         }];
+
         return (
             <div>
+                <div style={{width: '100%', marginLeft: '30px'}}>
+                    <label>所属用户：</label>
+                    <span style={{marginLeft: '20px'}}>{this.state.userData.realName}</span>
+                </div>
 
-                {this.props.buildList({
-                    fields,
-                    noSelect: true,
-                    pageCode: 802320,
-                    key: 'accountNumber',
-                    searchParams: {
-                        accountNumber: this.accountNumber,
-                        userId: this.userId
-                    },
-                    buttons: []
-                })}
-                <div style={{width: '100%', marginTop: '15px', textAlign: 'center'}}>
-                    <Button onClick={() => this.goBack()} type="primary">返回</Button>
+                <div style={{width: '100%', marginLeft: '30px', marginTop: '30px'}}>
+                    <label>账号：</label>
+                    <span style={{marginLeft: '20px'}}>{this.state.userData.accountNumber}</span>
+                </div>
+                <div style={{width: '100%', marginLeft: '30px', marginTop: '30px'}}>
+                    <label>创建时间：</label>
+                    <span style={{marginLeft: '20px'}}>{dateTimeFormat(this.state.userData.createDatetime)} </span>
+                </div>
+                <div style={{width: '100%', marginLeft: '30px', marginTop: '30px'}}>
+                    <label>账户余额：</label>
+                    <span style={{marginLeft: '20px'}}>{moneyFormat(this.state.userData.amount)}</span>
+                </div>
+                <div style={{width: '100%', marginLeft: '30px', marginTop: '30px'}}>
+                    <label>冻结金额：</label>
+                    <span style={{marginLeft: '20px'}}>{moneyFormat(this.state.userData.frozenAmount)}</span>
+                </div>
+                <div style={{width: '100%', marginLeft: '30px', marginTop: '30px'}}>
+                    <label>资金流水：</label>
+                    {
+                        this.props.buildList({
+                            fields,
+                            noSelect: true,
+                            pageCode: 802320,
+                            searchParams: {
+                                userId: this.userId
+                            },
+                            buttons: []
+                        })}
+                    <div style={{width: '100%', marginTop: '15px', textAlign: 'center'}}>
+                        <Button onClick={() => this.goBack()} type="primary">返回</Button>
+                    </div>
                 </div>
             </div>
         );

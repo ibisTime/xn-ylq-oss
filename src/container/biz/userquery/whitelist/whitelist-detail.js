@@ -11,7 +11,11 @@ class WhiteListDetail extends DetailUtil {
         this.view = !!getQueryString('v', this.props.location.search);
     }
     render() {
-        const fields = [{
+        const fields = [ {
+            title: '姓名',
+            field: 'realName',
+            search: true
+        }, {
             title: '登录账号',
             field: 'loginName'
         }, {
@@ -20,7 +24,10 @@ class WhiteListDetail extends DetailUtil {
             search: true
         }, {
             title: '推荐人',
-            field: 'realName'
+            field: 'businessMan',
+            formatter: (v, data) => {
+                return data.businessMan.mobile ? data.businessMan.mobile : '';
+            }
         }, {
             title: '所属客户',
             field: 'realName',

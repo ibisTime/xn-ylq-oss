@@ -32,31 +32,25 @@ class AccountQuery extends React.Component {
             title: '账户余额',
             field: 'amount',
             render: (v, data) => {
-                return data ? moneyFormat(data.amount) : '';
+                return moneyFormat(data.amount);
             }
         }, {
             title: '冻结金额',
             field: 'frozenAmount',
             render: (v, data) => {
-                return data ? moneyFormat(data.amount) : '';
+                return moneyFormat(data.frozenAmount);
             }
         }, {
             title: '创建时间',
             field: 'createDatetime',
             type: 'datetime'
         }, {
-            title: '状态',
-            field: 'status',
-            type: 'select',
-            key: 'user_status',
-            search: true
-        }, {
             title: '备注',
-                field: 'remark'
+            field: 'remark'
         }];
         return this.props.buildList({
             fields,
-            rowKey: 'accountNumber',
+            rowKey: 'userId',
             pageCode: 802300,
             searchParams: {
                 type: 'B'
@@ -79,7 +73,7 @@ class AccountQuery extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/accountquery/detail?accountNumber=${keys[0]}`);
+                        this.props.history.push(`/customer/accountquery/detail?userId=${keys[0]}`);
                     }
                 }
             }

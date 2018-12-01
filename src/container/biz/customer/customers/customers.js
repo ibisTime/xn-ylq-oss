@@ -54,7 +54,7 @@ class Customers extends React.Component {
             title: '累计消费',
             field: 'outAmount',
             render: (v, data) => {
-                return data.account ? moneyFormat(data.account.amount) : '';
+                return data.account ? moneyFormat(data.account.outAmount) : '';
             }
         }, {
             title: '账户余额',
@@ -81,8 +81,9 @@ class Customers extends React.Component {
             rowKey: 'userId',
             pageCode: 630115,
             searchParams: {
-                companyCode: ''
-            },
+                companyCode: '',
+                currency: 'CNY'
+    },
             btnEvent: {
                 // 添加备注
                 addRemark: (keys, items) => {

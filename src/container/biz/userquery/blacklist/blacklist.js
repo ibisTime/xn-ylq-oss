@@ -9,37 +9,25 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/biz/userquery/userbase';
+} from '@redux/biz/userquery/blacklist';
 import { listWrapper } from 'common/js/build-list';
 import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
 import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
 @listWrapper(
     state => ({
-        ...state.userQueryUserBase,
+        ...state.userQueryBlackList,
         parentCode: state.menu.subMenuCode
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class BlackList extends React.Component {
-    rockOrActive(status, code) {
-        Modal.confirm({
-            okText: '确认',
-            cancelText: '取消',
-            content: `确认${status === '0' ? '注销' : '激活'}用户？`,
-            onOk: () => {
-                this.props.doFetching();
-                return activateJUser(code).then(() => {
-                    this.props.getPageData();
-                    showSucMsg('操作成功');
-                }).catch(() => {
-                    this.props.cancelFetching();
-                });
-            }
-        });
-    }
     render() {
-        const fields = [{
+        const fields = [ {
+            title: '姓名',
+            field: 'realName',
+            search: true
+        }, {
             title: '登录账号',
             field: 'loginName'
         }, {
@@ -48,7 +36,10 @@ class BlackList extends React.Component {
             search: true
         }, {
             title: '推荐人',
-            field: 'realName'
+            field: 'businessMan',
+            render: (v, data) => {
+                return data.businessMan.mobile ? data.businessMan.mobile : '';
+            }
         }, {
             title: '所属客户',
             field: 'companyName',

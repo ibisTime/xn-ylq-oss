@@ -9,13 +9,13 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/biz/userquery/userbase';
+} from '@redux/biz/userquery/whitelist';
 import { listWrapper } from 'common/js/build-list';
 import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
 import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
 @listWrapper(
     state => ({
-        ...state.userQueryUserBase,
+        ...state.userQueryWhiteList,
         parentCode: state.menu.subMenuCode
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
@@ -39,7 +39,12 @@ class WhiteList extends React.Component {
         });
     }
     render() {
-        const fields = [{
+        const fields = [
+            {
+                title: '姓名',
+                field: 'realName',
+                search: true
+            }, {
             title: '登录账号',
             field: 'loginName'
         }, {
@@ -48,7 +53,10 @@ class WhiteList extends React.Component {
             search: true
         }, {
             title: '推荐人',
-            field: 'realName'
+            field: 'businessMan',
+            render: (v, data) => {
+                return data.businessMan.mobile ? data.businessMan.mobile : '';
+            }
         }, {
             title: '所属客户',
             field: 'realName',

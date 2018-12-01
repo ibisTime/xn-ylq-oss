@@ -39,13 +39,21 @@ class Userbase extends React.Component {
         });
     }
     render() {
-        const fields = [{
+        const fields = [
+            {
+                title: '姓名',
+                field: 'realName',
+                search: true
+            }, {
             title: '手机号',
             field: 'mobile',
             search: true
         }, {
             title: '推荐人',
-            field: 'realName'
+            field: 'businessMan',
+            render: (v, data) => {
+                return data.businessMan.mobile ? data.businessMan.mobile : '';
+            }
         }, {
             title: '所属客户',
             field: 'companyCode',
