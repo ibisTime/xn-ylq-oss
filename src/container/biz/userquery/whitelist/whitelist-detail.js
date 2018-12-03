@@ -30,7 +30,7 @@ class WhiteListDetail extends DetailUtil {
             }
         }, {
             title: '所属客户',
-            field: 'realName',
+            field: 'companyName',
             type: 'select',
             search: true,
             formatter: (v, data) => {

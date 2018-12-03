@@ -59,23 +59,6 @@ class Account extends React.Component {
             </Col>
             </Row>
         </Spin>
-        <Modal
-          className="build-modal-detail"
-          destroyOnClose
-          visible={visible}
-          title='手动增发'
-          onCancel={this.onCancel}
-          style={{minWidth: 820}}
-          footer={null}>
-          <Form className="detail-form-wrapper" onSubmit={this.handleSubmit}>
-            {this.getInputComp('amount', '金额', true)}
-            {this.getInputComp('bizNote', '说明')}
-            <Form.Item style={{marginTop: 20}} className="cform-item-btn" key='btns' {...formItemLayout} label="&nbsp;">
-              <Button type="primary" htmlType="submit" loading={btnFetching}>保存</Button>
-              <Button style={{marginLeft: 20}} onClick={this.onCancel}>返回</Button>
-            </Form.Item>
-          </Form>
-        </Modal>
       </div>
     );
   }

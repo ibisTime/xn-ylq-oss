@@ -58,16 +58,16 @@ class WhiteList extends React.Component {
                 return data.businessMan.mobile ? data.businessMan.mobile : '';
             }
         }, {
-            title: '所属客户',
-            field: 'realName',
-            type: 'select',
-            search: true,
-            pageCode: '630115',
-            keyName: 'userId',
-            valueName: '{{realName.DATA}}-{{mobile.DATA}}',
-            searchName: 'keyword',
-            render: (v, data) => {
-                return data.businessMan.realName ? data.businessMan.realName : '';
+                title: '所属客户',
+                field: 'companyName',
+                type: 'select',
+                search: true,
+                pageCode: '630115',
+                keyName: 'userId',
+                valueName: '{{realName.DATA}}-{{mobile.DATA}}',
+                searchName: 'keyword',
+                render: (v, data) => {
+                    return data.businessMan.realName ? data.businessMan.realName : '';
             }
         }, {
             title: '注册时间',

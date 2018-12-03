@@ -14,7 +14,7 @@ class BlackListDetail extends DetailUtil {
         const fields = [
             {
                 title: '姓名',
-                field: 'realName',
+                field: 'nickname',
                 search: true
             }, {
             title: '登录账号',

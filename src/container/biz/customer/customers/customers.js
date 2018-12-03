@@ -41,15 +41,15 @@ class Customers extends React.Component {
     }
     render() {
         const fields = [{
-            title: '登录账号',
-            field: 'loginName'
-        }, {
             title: '手机号',
             field: 'mobile',
             search: true
         }, {
             title: '姓名',
             field: 'realName'
+        }, {
+            title: '登录账号',
+            field: 'loginName'
         }, {
             title: '累计消费',
             field: 'outAmount',
