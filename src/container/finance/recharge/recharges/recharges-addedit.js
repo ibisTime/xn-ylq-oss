@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString, getUserId, showSucMsg } from 'common/js/util';
+import { getQueryString, getUserId, showSucMsg, dateTimeFormat } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
 
@@ -11,6 +11,7 @@ class RechargesAddEdit extends DetailUtil {
     this.code = getQueryString('code', this.props.location.search);
     this.view = !!getQueryString('v', this.props.location.search);
     this.check = !!getQueryString('check', this.props.location.search);
+    this.status = getQueryString('status', this.props.location.search) || '';
   }
   checkOrder(payResult, params) {
     this.doFetching();
@@ -78,12 +79,29 @@ class RechargesAddEdit extends DetailUtil {
           key: 'charge_status'
         });
       }
-      fields.push({
-        field: 'payNote',
-        title: '审核意见',
-        required: true,
-        readonly: !this.check
-      });
+        fields.push({
+            field: 'applyUserName',
+            title: '申请人'
+        }, {
+            field: 'applyDatetime',
+            title: '申请时间',
+            type: 'datetime'
+        }, {
+            field: 'payUserName',
+            title: '审核人',
+            hidden: this.status !== '3'
+        }, {
+            field: 'payDatetime',
+            title: '审核时间',
+            type: 'datetime',
+            hidden: this.status !== '3'
+        }, {
+            field: 'payNote',
+            title: '审核意见',
+            required: true,
+            readonly: !this.check,
+            hidden: this.status !== '3' && !this.check
+        });
     }
     if (this.check) {
       config.buttons = [{

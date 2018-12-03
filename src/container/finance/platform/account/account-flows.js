@@ -49,6 +49,7 @@ class PlatformFlows extends React.Component {
             title: '变动时间',
             field: 'createDatetime',
             type: 'date',
+            search: true,
             rangedate: ['createDatetimeStart', 'createDatetimeEnd'],
             render: dateTimeFormat
         }, {

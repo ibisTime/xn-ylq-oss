@@ -54,7 +54,7 @@ class Account extends React.Component {
       <div>
         <Spin spinning={this.props.fetching}>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-            <Col span={8} style={{marginBottom: '20px'}}>
+            <Col span={8} style={{marginBottom: '20px', cursor: 'pointer'}}>
               <Card title="盈亏账户"onClick={() => this.goFlows(cnyAccount.accountNumber)}>¥{moneyFormat(cnyAccount.amount || 0)}</Card>
             </Col>
             </Row>

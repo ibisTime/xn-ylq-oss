@@ -26,7 +26,7 @@ class WhiteListDetail extends DetailUtil {
             title: '推荐人',
             field: 'businessMan',
             formatter: (v, data) => {
-                return data.businessMan.mobile ? data.businessMan.mobile : '';
+                return data.businessMan ? data.businessMan.mobile : '';
             }
         }, {
             title: '所属客户',
@@ -34,7 +34,7 @@ class WhiteListDetail extends DetailUtil {
             type: 'select',
             search: true,
             formatter: (v, data) => {
-                return data.businessMan.realName ? data.businessMan.realName : '';
+                return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
             }
         }, {
             title: '注册时间',

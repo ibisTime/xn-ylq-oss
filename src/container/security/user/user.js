@@ -48,6 +48,9 @@ class User extends React.Component {
         return data.loginName;
       }
     }, {
+        title: '真实姓名',
+        field: 'realName'
+    }, {
       title: '手机号',
       field: 'mobile'
     }, {

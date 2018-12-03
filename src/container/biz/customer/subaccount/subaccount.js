@@ -11,14 +11,25 @@ class RoleAddEdit extends DetailUtil {
         this.view = !!getQueryString('v', this.props.location.search);
     }
     render() {
-        const fields = [{
+        const fields = [
+            {
+                title: '登录名',
+                field: 'loginName',
+                required: true
+            }, {
             title: '姓名',
             field: 'realName',
             required: true
         }, {
             title: '手机号',
             field: 'mobile',
+            mobile: true,
             required: true
+            }, {
+                title: '登录密码',
+                field: 'loginPwd',
+                type: 'password',
+                required: true
         }, {
             title: '借条模块',
             field: 'isJt',
@@ -64,17 +75,8 @@ class RoleAddEdit extends DetailUtil {
         }, {
             title: '预充值',
             field: 'precharge',
+             amount: true,
             required: true
-        },
-         {
-            title: '登录名',
-            field: 'loginName',
-             required: true
-        }, {
-            title: '初始登录密码',
-            field: 'loginPwd',
-                type: 'password',
-                required: true
         }];
         return this.buildDetail({
             fields,

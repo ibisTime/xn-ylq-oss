@@ -55,7 +55,7 @@ class WhiteList extends React.Component {
             title: '推荐人',
             field: 'businessMan',
             render: (v, data) => {
-                return data.businessMan.mobile ? data.businessMan.mobile : '';
+                return data.businessMan ? data.businessMan.mobile : '';
             }
         }, {
                 title: '所属客户',
@@ -67,7 +67,7 @@ class WhiteList extends React.Component {
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
                 render: (v, data) => {
-                    return data.businessMan.realName ? data.businessMan.realName : '';
+                    return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
             }
         }, {
             title: '注册时间',

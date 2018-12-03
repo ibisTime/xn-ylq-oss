@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import {Modal} from 'antd';
 import {
     setTableData,
     setPagination,
@@ -10,16 +10,19 @@ import {
     cancelFetching,
     setSearchData
 } from '@redux/biz/userquery/userbase';
-import { listWrapper } from 'common/js/build-list';
-import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
-import { activateUser, getUserById, getUser, addwhite, addblack } from 'api/user';
+import {listWrapper} from 'common/js/build-list';
+import {showSucMsg, showWarnMsg, moneyFormat, getUserId} from 'common/js/util';
+import {activateUser, getUserById, getUser, addwhite, addblack} from 'api/user';
+
 @listWrapper(
     state => ({
         ...state.userQueryUserBase,
         parentCode: state.menu.subMenuCode
     }),
-    { setTableData, clearSearchParam, doFetching, setBtnList,
-        cancelFetching, setPagination, setSearchParam, setSearchData }
+    {
+        setTableData, clearSearchParam, doFetching, setBtnList,
+        cancelFetching, setPagination, setSearchParam, setSearchData
+    }
 )
 class Userbase extends React.Component {
     rockOrActive(status, code) {
@@ -38,6 +41,7 @@ class Userbase extends React.Component {
             }
         });
     }
+
     render() {
         const fields = [
             {
@@ -45,69 +49,69 @@ class Userbase extends React.Component {
                 field: 'realName',
                 search: true
             }, {
-            title: '手机号',
-            field: 'mobile',
-            search: true
-        }, {
-            title: '推荐人',
-            field: 'businessMan',
-            render: (v, data) => {
-                return data.businessMan.mobile ? data.businessMan.mobile : '';
-            }
-        }, {
-            title: '所属客户',
-            field: 'companyCode',
-            type: 'select',
-            pageCode: '630115',
-            keyName: 'companyCode',
-            valueName: '{{realName.DATA}}',
-            searchName: 'keyword',
-            search: true,
-            render: (v, data) => {
-                return data.businessMan.loginName ? data.businessMan.loginName : '';
-            }
-        }, {
-            title: '注册时间',
-            field: 'createDatetime',
-            type: 'datetime'
-        }, {
-            title: '状态',
-            field: 'status',
-            type: 'select',
-            key: 'user_status',
-            search: true
-        }, {
-            title: '是否黑名单',
-            field: 'isBlackList',
-            type: 'select',
-            data: [{
-                'key': '1',
-                'value': '是'
+                title: '手机号',
+                field: 'mobile',
+                search: true
             }, {
-                'key': '0',
-                'value': '否'
-            }],
-            keyName: 'key',
-            valueName: 'value',
-            search: true
-        }, {
-            title: '是否白名单',
-            field: 'isWhiteList',
-            type: 'select',
-            data: [{
-                'key': '1',
-                'value': '是'
+                title: '推荐人',
+                field: 'businessMan',
+                render: (v, data) => {
+                    return data.businessMan.mobile ? data.businessMan.mobile : '';
+                }
             }, {
-                'key': '0',
-                'value': '否'
-            }],
-            keyName: 'key',
-            valueName: 'value',
-            search: true
-        }, {
-            title: '备注',
-            field: 'remark'
-        }];
+                title: '所属客户',
+                field: 'companyCode',
+                type: 'select',
+                pageCode: '630115',
+                keyName: 'companyCode',
+                valueName: '{{realName.DATA}}',
+                searchName: 'keyword',
+                search: true,
+                render: (v, data) => {
+                    return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
+                }
+            }, {
+                title: '注册时间',
+                field: 'createDatetime',
+                type: 'datetime'
+            }, {
+                title: '是否黑名单',
+                field: 'isBlackList',
+                type: 'select',
+                data: [{
+                    'key': '1',
+                    'value': '是'
+                }, {
+                    'key': '0',
+                    'value': '否'
+                }],
+                keyName: 'key',
+                valueName: 'value',
+                search: true
+            }, {
+                title: '是否白名单',
+                field: 'isWhiteList',
+                type: 'select',
+                data: [{
+                    'key': '1',
+                    'value': '是'
+                }, {
+                    'key': '0',
+                    'value': '否'
+                }],
+                keyName: 'key',
+                valueName: 'value',
+                search: true
+            }, {
+                title: '状态',
+                field: 'status',
+                type: 'select',
+                key: 'user_status',
+                search: true
+            }, {
+                title: '备注',
+                field: 'remark'
+            }];
         return this.props.buildList({
             fields,
             rowKey: 'userId',
@@ -122,7 +126,7 @@ class Userbase extends React.Component {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    }else {
+                    } else {
                         this.props.history.push(`/userquery/userqueryaddedit?code=${keys[0]}`);
                     }
                 },
@@ -133,7 +137,7 @@ class Userbase extends React.Component {
                         showWarnMsg('请选择一条记录');
                     } else if (items[0].isBlackList === '1') {
                         showWarnMsg('该用户已在黑名单');
-                    }else {
+                    } else {
                         Modal.confirm({
                             okText: '确认',
                             cancelText: '取消',
@@ -152,12 +156,12 @@ class Userbase extends React.Component {
                 },
                 addwhite: (keys, items) => {
                     if (!keys || !keys.length) {
-                          showWarnMsg('请选择记录');
+                        showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else if (items[0].isWhiteList === '1') {
                         showWarnMsg('该用户已在白名单');
-                    }else {
+                    } else {
                         Modal.confirm({
                             okText: '确认',
                             cancelText: '取消',
@@ -191,7 +195,8 @@ class Userbase extends React.Component {
                     } else {
                         this.rockOrActive(items[0].status, keys[0]);
                     }
-                }}
+                }
+            }
         });
     }
 }

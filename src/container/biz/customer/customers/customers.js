@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import {Modal} from 'antd';
 import {
     setTableData,
     setPagination,
@@ -10,17 +10,19 @@ import {
     cancelFetching,
     setSearchData
 } from '@redux/biz/customer/customers';
-import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, moneyFormat } from 'common/js/util';
-import { activateJUser } from 'api/user';
+import {listWrapper} from 'common/js/build-list';
+import {showWarnMsg, moneyFormat} from 'common/js/util';
+import {activateJUser} from 'api/user';
 
 @listWrapper(
     state => ({
         ...state.customerCustomers,
         parentCode: state.menu.subMenuCode
     }),
-    { setTableData, clearSearchParam, doFetching, setBtnList,
-        cancelFetching, setPagination, setSearchParam, setSearchData }
+    {
+        setTableData, clearSearchParam, doFetching, setBtnList,
+        cancelFetching, setPagination, setSearchParam, setSearchData
+    }
 )
 class Customers extends React.Component {
     rockOrActive(status, code) {
@@ -39,43 +41,48 @@ class Customers extends React.Component {
             }
         });
     }
+
     render() {
-        const fields = [{
-            title: '手机号',
-            field: 'mobile',
-            search: true
-        }, {
-            title: '姓名',
-            field: 'realName'
-        }, {
-            title: '登录账号',
-            field: 'loginName'
-        }, {
-            title: '累计消费',
-            field: 'outAmount',
-            render: (v, data) => {
-                return data.account ? moneyFormat(data.account.outAmount) : '';
-            }
-        }, {
-            title: '账户余额',
-            field: 'amount',
-            render: (v, data) => {
-                return data.account ? moneyFormat(data.account.amount) : '';
-            }
-        }, {
-            title: '注册时间',
-            field: 'createDatetime',
-            type: 'datetime'
-        }, {
-            title: '状态',
-            field: 'status',
-            type: 'select',
-            key: 'user_status',
-            search: true
-        }, {
-            title: '备注',
-            field: 'remark'
-        }];
+        const fields = [
+            {
+                title: '编号',
+                field: 'companyCode'
+            }, {
+                title: '姓名',
+                field: 'realName'
+            }, {
+                title: '手机号',
+                field: 'mobile',
+                search: true
+            }, {
+                title: '登录账号',
+                field: 'loginName'
+            }, {
+                title: '累计消费',
+                field: 'outAmount',
+                render: (v, data) => {
+                    return data.account ? moneyFormat(data.account.outAmount) : '';
+                }
+            }, {
+                title: '账户余额',
+                field: 'amount',
+                render: (v, data) => {
+                    return data.account ? moneyFormat(data.account.amount) : '';
+                }
+            }, {
+                title: '注册时间',
+                field: 'createDatetime',
+                type: 'datetime'
+            }, {
+                title: '状态',
+                field: 'status',
+                type: 'select',
+                key: 'user_status',
+                search: true
+            }, {
+                title: '备注',
+                field: 'remark'
+            }];
         return this.props.buildList({
             fields,
             rowKey: 'userId',
@@ -83,7 +90,7 @@ class Customers extends React.Component {
             searchParams: {
                 companyCode: '',
                 currency: 'CNY'
-    },
+            },
             btnEvent: {
                 // 添加备注
                 addRemark: (keys, items) => {
@@ -91,7 +98,7 @@ class Customers extends React.Component {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    }else {
+                    } else {
                         this.props.history.push(`/customer/customers/addedit?code=${keys[0]}`);
                     }
                 },
@@ -101,7 +108,7 @@ class Customers extends React.Component {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    }else {
+                    } else {
                         this.props.history.push(`/customer/customers/detail?userId=${keys[0]}`);
                     }
                 },
@@ -118,7 +125,8 @@ class Customers extends React.Component {
                     } else {
                         this.rockOrActive(items[0].status, keys[0]);
                     }
-                }}
+                }
+            }
         });
     }
 }
