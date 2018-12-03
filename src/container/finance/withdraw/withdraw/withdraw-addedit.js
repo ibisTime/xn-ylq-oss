@@ -100,6 +100,7 @@ class WithdrawAddedit extends DetailUtil {
             }, 1000);
           }).catch(this.cancelFetching);
         },
+          //
         check: true,
         type: 'primary'
       }, {
