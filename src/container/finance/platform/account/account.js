@@ -29,8 +29,8 @@ class Account extends React.Component {
     this.props.history.push(`/platform/account/accounts?code=${accountNumber}`);
   }
   // 平台流水
-  goFlows(type) {
-    this.props.history.push(`/platform/account/flows?type=${type}`);
+  goFlows(accountNumber) {
+    this.props.history.push(`/platform/account/flows?accountNumber=${accountNumber}`);
   }
   // 手动增发
   goAdd(currency) {

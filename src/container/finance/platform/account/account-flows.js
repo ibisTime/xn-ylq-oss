@@ -8,19 +8,23 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/finance/platform/flows';
+} from '@redux/finance/platform/accountFlows';
 import { listWrapper } from 'common/js/build-list';
-import { dateTimeFormat, showWarnMsg } from 'common/js/util';
+import { dateTimeFormat, showWarnMsg, getQueryString } from 'common/js/util';
 
 @listWrapper(
     state => ({
-        ...state.platformFlows,
+        ...state.platformAccountFlows,
         parentCode: state.menu.subMenuCode
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class PlatformFlows extends React.Component {
+    constructor(props) {
+        super(props);
+        this.accountNumber = getQueryString('accountNumber', this.props.location.search) || '';
+    }
     render() {
         const fields = [{
             title: '户名',
@@ -62,10 +66,9 @@ class PlatformFlows extends React.Component {
         }];
         return this.props.buildList({
             fields,
-            key: 'userId',
             pageCode: 802320,
             searchParams: {
-                accountType: 'B'
+                accountNumber: this.accountNumber
             },
             buttons: [{
                 code: 'detail',

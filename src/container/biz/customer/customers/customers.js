@@ -89,7 +89,7 @@ class Customers extends React.Component {
             pageCode: 630115,
             searchParams: {
                 companyCode: '',
-                currency: 'CNY'
+                isAdmin: '1'
             },
             btnEvent: {
                 // 账户余额

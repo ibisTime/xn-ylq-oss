@@ -91,11 +91,17 @@ class CustomerDetail extends DetailUtil {
                 key: 'user_status'
             }, {
                 title: 'APP名',
-                field: 'appName'
+                field: 'appName',
+                formatter: (v, data) => {
+                    return data.company ? data.company.name : '';
+                }
             }, {
                 title: 'Logo',
                 field: 'logo',
-                type: 'img'
+                type: 'img',
+                formatter: (v, data) => {
+                    return data.company ? data.company.logo : '';
+                }
             }, {
                 title: '备注',
                 field: 'remark'
