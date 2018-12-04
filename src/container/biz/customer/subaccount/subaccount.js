@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, showSucMsg } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
+import fetch from 'common/js/fetch';
 
 @Form.create()
 class RoleAddEdit extends DetailUtil {
@@ -43,6 +44,7 @@ class RoleAddEdit extends DetailUtil {
             }],
             keyName: 'key',
             valueName: 'value',
+            value: '1',
             required: true
         }, {
             title: '风控模块',
@@ -77,13 +79,48 @@ class RoleAddEdit extends DetailUtil {
             field: 'precharge',
              amount: true,
             required: true
-        }];
+        }, {
+                title: 'APP名',
+                field: 'appName',
+                required: true
+            }, {
+                title: 'Logo',
+                field: 'logo',
+                type: 'img',
+                single: true,
+                required: true
+            }];
         return this.buildDetail({
             fields,
             code: this.code,
             view: this.view,
-            addCode: 630100,
-            editCode: 805025
+            buttons: [{
+                title: '保存',
+                type: 'primary',
+                check: true,
+                handler: (param) => {
+                    this.doFetching();
+                    fetch(630100, param).then(() => {
+                        showSucMsg('操作成功');
+                        this.cancelFetching();
+                        setTimeout(() => {
+                            this.props.form.setFieldsValue({
+                                'loginName': '',
+                                'realName': '',
+                                'mobile': '',
+                                'loginPwd': '',
+                                'isJt': '',
+                                'isFk': '',
+                                'isDl': '',
+                                'precharge': '',
+                                'appName': '',
+                                'logo': ''
+                            });
+                        }, 1000);
+                    }).catch(this.cancelFetching);
+                }
+            }]
+
         });
     }
 }

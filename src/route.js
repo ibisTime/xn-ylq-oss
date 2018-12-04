@@ -42,34 +42,6 @@ const ROUTES = [
   {
     path: '/system/user/addedit', component: asyncComponent(() => import('container/security/user-addedit/user-addedit'))
   },
-  // 财务管理 -- 平台账户 -- 分销规则设置
-  {
-    path: '/platform/distributionRules', component: asyncComponent(() => import('container/finance/platform/distributionRules/distributionRules'))
-  },
-  // 财务管理 -- 平台账户 -- 分销规则设置 -- 详情
-  {
-    path: '/platform/distributionRules/addedit', component: asyncComponent(() => import('container/finance/platform/distributionRules/distributionRules-addedit'))
-  },
-  // 财务管理 -- 平台账户 -- 级差设置
-  {
-    path: '/platform/gradationRules', component: asyncComponent(() => import('container/finance/platform/gradationRules/gradationRules'))
-  },
-  // 财务管理 -- 平台账户 -- 级差设置 -- 详情
-  {
-    path: '/platform/gradationRules/addedit', component: asyncComponent(() => import('container/finance/platform/gradationRules/gradationRules-addedit'))
-  },
-  // 财务管理 -- 平台账户 -- 积分规则
-  {
-    path: '/platform/integralRules', component: asyncComponent(() => import('container/finance/platform/integralRules/integralRules'))
-  },
-  // 财务管理 -- 平台账户 -- 积分规则
-  {
-    path: '/platform/payRules', component: asyncComponent(() => import('container/finance/platform/payRules/payRules'))
-  },
-  // 财务管理 -- 平台账户 -- 会员等级设置
-  {
-    path: '/platform/memberLevel', component: asyncComponent(() => import('container/finance/platform/memberLevel/memberLevel'))
-  },
   {
     path: '/platform/memberLevel/addedit', component: asyncComponent(() => import('container/security/sysParam-addedit/sysParam-addedit'))
   },
@@ -87,10 +59,6 @@ const ROUTES = [
   // 财务管理 -- 平台账户 -- 账户查询 -- 流水查询
   {
     path: '/platform/account/flows', component: asyncComponent(() => import('container/finance/platform/account/account-flows'))
-  },
-  // 财务管理 -- 平台账户 -- 账户查询 -- 提现回录
-  {
-    path: '/platform/account/enter', component: asyncComponent(() => import('container/finance/platform/account/account-enter'))
   },
   // 财务管理 -- 平台账户 -- 账户查询 -- 资金分布
   {
@@ -157,18 +125,6 @@ const ROUTES = [
   {
     path: '/user/users/accounts', component: asyncComponent(() => import('container/biz/user/users/user-accounts'))
   },
-  // 业务管理 -- 用户管理 -- 签到记录
-  {
-    path: '/user/users/signIn', component: asyncComponent(() => import('container/biz/user/users/user-signIn'))
-  },
-  // 业务管理 -- 用户管理 -- 分享记录
-  {
-    path: '/user/shares', component: asyncComponent(() => import('container/biz/user/shares/shares'))
-  },
-  // 业务管理 -- 用户管理 -- 碳泡泡赠送记录
-  {
-    path: '/user/gives', component: asyncComponent(() => import('container/biz/user/gives/gives'))
-  },
   // 业务管理 -- 用户管理 -- 账户查询
   {
     path: '/user/accounts', component: asyncComponent(() => import('container/biz/user/accounts/accounts'))
@@ -189,14 +145,6 @@ const ROUTES = [
   {
     path: '/user/flows/addedit', component: asyncComponent(() => import('container/finance/flows-addedit/flows-addedit'))
   },
-  // 业务管理 -- 业务规则 -- 好友排行权重设置
-  {
-    path: '/rules/weight', component: asyncComponent(() => import('container/biz/rules/weight/weight'))
-  },
-  // 业务管理 -- 业务规则 -- 好友排行权重设置 -- 详情
-  {
-    path: '/rules/weight/addedit', component: asyncComponent(() => import('container/biz/rules/weight/weight-addedit'))
-  },
     // 业务管理--客户管理--客户管理
     {
         path: '/customer/customers', component: asyncComponent(() => import('container/biz/customer/customers/customers'))
@@ -210,7 +158,7 @@ const ROUTES = [
         path: '/customer/customers/addedit', component: asyncComponent(() => import('container/biz/customer/customer-addedit/customer-addedit'))
     }, // 客户管理-账户余额
     {
-        path: '/customer/customers/detail', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery-detail'))
+        path: '/customer/customers/amount', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery-detail'))
     },
     // 业务管理--客户管理--开子账号
     {
@@ -219,6 +167,10 @@ const ROUTES = [
     // 业务管理--客户管理--账户查询
     {
         path: '/customer/accountquery', component: asyncComponent(() => import('container/biz/customer/accuntquery/accountquery'))
+    },
+    // 业务管理--客户管理--详情
+    {
+        path: '/customer/customers/detail', component: asyncComponent(() => import('container/biz/customer/customers/customer-detail'))
     },
     // 业务管理--客户管理--账户查询-流水查询
     {

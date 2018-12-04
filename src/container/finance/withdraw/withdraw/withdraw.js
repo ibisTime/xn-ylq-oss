@@ -28,15 +28,15 @@ class Withdraw extends React.Component {
       field: 'code',
       title: '编号'
     }, {
+        field: 'realName',
+        title: '户名',
+        search: true
+    }, {
         field: 'payCardInfo',
         title: '银行名称'
     }, {
       field: 'payCardNo',
       title: '银行卡号'
-    }, {
-      field: 'realName',
-      title: '户名',
-      search: true
     }, {
       field: 'amount',
       title: '取现金额',

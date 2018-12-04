@@ -92,24 +92,23 @@ class Customers extends React.Component {
                 currency: 'CNY'
             },
             btnEvent: {
-                // 添加备注
-                addRemark: (keys, items) => {
+                // 账户余额
+                amount: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/customers/addedit?code=${keys[0]}`);
+                        this.props.history.push(`/customer/customers/amount?userId=${keys[0]}`);
                     }
                 },
-                // 账户余额
                 detail: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/customers/detail?userId=${keys[0]}`);
+                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&companyCode=${items[0].companyCode}`);
                     }
                 },
                 //  报告列表
