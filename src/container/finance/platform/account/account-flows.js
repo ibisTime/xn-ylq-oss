@@ -24,8 +24,7 @@ class PlatformFlows extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'relaNameForQuery',
-            render: (v, d) => d.realName,
+            field: 'realName',
             search: true
         }, {
             title: '业务类型',
@@ -63,6 +62,7 @@ class PlatformFlows extends React.Component {
         }];
         return this.props.buildList({
             fields,
+            key: 'userId',
             pageCode: 802320,
             searchParams: {
                 accountType: 'B'
@@ -76,7 +76,7 @@ class PlatformFlows extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else{
-                        this.props.history.push(`/customer/customers/detail?detail=1&v=1&code=${keys[0]}`);
+                        this.props.history.push(`/platform/flows/addedit?detail=1&v=1&code=${keys[0]}`);
                     }
                 }
             }]

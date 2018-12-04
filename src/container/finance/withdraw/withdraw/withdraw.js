@@ -28,14 +28,8 @@ class Withdraw extends React.Component {
       field: 'code',
       title: '编号'
     }, {
-      field: 'accountType',
-      title: '角色类型',
-      type: 'select',
-      key: 'account_type',
-      search: true
-    }, {
-        field: 'channelBank',
-        title: '银行类型'
+        field: 'payCardInfo',
+        title: '银行名称'
     }, {
       field: 'payCardNo',
       title: '银行卡号'

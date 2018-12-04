@@ -30,12 +30,6 @@ class WithdrawAddedit extends DetailUtil {
       field: 'realName',
       required: true
     }, {
-      field: 'accountType',
-      title: '账户类型',
-      type: 'select',
-      key: 'account_type',
-      required: true
-    }, {
       field: 'amount1',
       title: '金额',
       _keys: ['amount'],
@@ -50,8 +44,8 @@ class WithdrawAddedit extends DetailUtil {
       type: 'select',
       key: 'channel_type'
     }, {
-      field: 'channelBank',
-      title: '银行类型'
+        field: 'payCardInfo',
+        title: '银行名称'
     }, {
       field: 'payCardNo',
       title: '银行卡号'

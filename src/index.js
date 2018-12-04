@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars s*/
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
