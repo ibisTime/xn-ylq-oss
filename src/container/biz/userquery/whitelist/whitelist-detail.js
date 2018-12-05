@@ -14,7 +14,9 @@ class WhiteListDetail extends DetailUtil {
         const fields = [ {
             title: '姓名',
             field: 'realName',
-            search: true
+            formatter: (v, data) => {
+                return data.businessMan.realName ? data.businessMan.realName : '';
+            }
         }, {
             title: '登录账号',
             field: 'loginName'

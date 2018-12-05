@@ -15,7 +15,10 @@ class BlackListDetail extends DetailUtil {
             {
                 title: '姓名',
                 field: 'nickname',
-                search: true
+                search: true,
+                formatter: (v, data) => {
+                    return data.businessMan.realName ? data.businessMan.realName : '';
+                }
             }, {
             title: '登录账号',
             field: 'loginName'

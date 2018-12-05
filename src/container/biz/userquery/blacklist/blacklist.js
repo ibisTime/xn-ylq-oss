@@ -26,7 +26,9 @@ class BlackList extends React.Component {
         const fields = [ {
             title: '姓名',
             field: 'realName',
-            search: true
+            render: (v, data) => {
+                return data.businessMan ? data.businessMan.realName : '';
+            }
         }, {
             title: '登录账号',
             field: 'loginName'

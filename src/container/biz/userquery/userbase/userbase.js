@@ -47,7 +47,10 @@ class Userbase extends React.Component {
             {
                 title: '姓名',
                 field: 'realName',
-                search: true
+                search: true,
+                render: (v, data) => {
+                    return data.businessMan.realName ? data.businessMan.realName : '';
+                }
             }, {
                 title: '手机号',
                 field: 'mobile',

@@ -37,21 +37,21 @@ class Flows extends React.Component {
             title: '变动金额',
             field: 'transAmountString',
             amount: true,
-            render: (v, data) => {
+            formatter: (v, data) => {
                 return data ? moneyFormat(data.amount) : '';
             }
         }, {
             title: '变动前金额',
             field: 'preAmountString',
             amount: true,
-            render: (v, data) => {
+            formatter: (v, data) => {
                 return data ? moneyFormat(data.amount) : '';
             }
         }, {
             title: '变动后金额',
             field: 'postAmountString',
             amount: true,
-            render: (v, data) => {
+            formatter: (v, data) => {
                 return data ? moneyFormat(data.amount) : '';
             }
         }, {

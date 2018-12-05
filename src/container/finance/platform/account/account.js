@@ -48,7 +48,6 @@ class Account extends React.Component {
     }];
   }
   render() {
-    const { visible, btnFetching } = this.state;
     const { cnyAccount } = this.props;
     return (
       <div>
