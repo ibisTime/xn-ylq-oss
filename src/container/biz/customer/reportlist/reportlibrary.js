@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'antd';
+import { Modal, Button } from 'antd';
 import {
     setTableData,
     setPagination,
@@ -23,21 +23,8 @@ import { activateUser } from 'api/user';
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class ReportLibrary extends React.Component {
-    rockOrActive(status, code) {
-        Modal.confirm({
-            okText: '确认',
-            cancelText: '取消',
-            content: `确认${status === '0' ? '注销' : '激活'}用户？`,
-            onOk: () => {
-                this.props.doFetching();
-                return activateUser(code).then(() => {
-                    this.props.getPageData();
-                    showWarnMsg('操作成功');
-                }).catch(() => {
-                    this.props.cancelFetching();
-                });
-            }
-        });
+    goBack = () => {
+        this.props.history.go(-1);
     }
     render() {
         const fields = [{
@@ -75,43 +62,20 @@ class ReportLibrary extends React.Component {
             field: 'createDatetime',
             type: 'datetime'
         }];
-        return this.props.buildList({
-            fields,
-            rowKey: 'userId',
-            pageCode: 805120,
-            btnEvent: {
-                // 账户查询
-                accounts: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else {
-                        this.props.history.push(`/user/users/accounts?code=${keys[0]}`);
-                    }
-                },
-                // 注销
-                rock: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else if (items[0].status !== '0') {
-                        showWarnMsg('该用户已被禁止登陆');
-                    } else {
-                        this.rockOrActive(items[0].status, keys[0]);
-                    }
-                },
-                // 添加备注
-                addRemark: (keys, items) => {
-                    this.props.history.push(`/customer/customers/addedit?code=${keys[0]}`);
-                },
-                //  报告列表
-                checklist: (keys, items) => {
-                    this.props.history.push(`/userquery/reportlibrary`);
-                }
-            }
-        });
+        return (
+            <div>
+         {
+            this.props.buildList({
+                fields,
+                rowKey: 'userId',
+                pageCode: 805120
+            })
+        }
+        <div style={{width: '100%', marginTop: '15px', textAlign: 'center'}}>
+            <Button onClick={() => this.goBack()} type="primary">返回</Button>
+        </div>
+            </div>
+        );
     }
 }
 

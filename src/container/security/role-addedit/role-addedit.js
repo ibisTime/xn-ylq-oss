@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString } from 'common/js/util';
+import { getQueryString, getUserName } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
 
 @Form.create()
@@ -31,7 +31,11 @@ class RoleAddEdit extends DetailUtil {
       view: this.view,
       detailCode: 805022,
       addCode: 805023,
-      editCode: 805025
+      editCode: 805025,
+      beforeSubmit: (data) => {
+        data.updater = getUserName();
+        return data;
+      }
     });
   }
 }

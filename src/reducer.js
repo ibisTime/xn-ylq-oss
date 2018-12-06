@@ -43,6 +43,8 @@ import { customerCustomersDetail } from './redux/biz/customer/customersdetail';
 import { userQueryUserBase } from './redux/biz/userquery/userbase';
 // 用户查询--用户库--添加备注
 import { userQueryAddEdit } from './redux/biz/userquery/userqueryAddedit';
+// k客户管理-报告列表
+import { userQueryReporyLibraryDetil } from './redux/biz/userquery/reportlibrarydetail';
 // 用户查询--用户库-报告库
 import { userQueryReporyLibrary } from './redux/biz/userquery/reportlibrary';
 // 用户查询--白名单
@@ -97,5 +99,6 @@ export default combineReducers({
     generalIosPublish,
     generalIosPublishAddEdit,
     accountQueryDetail,
-    customerCustomersDetail
+    customerCustomersDetail,
+    userQueryReporyLibraryDetil
 });

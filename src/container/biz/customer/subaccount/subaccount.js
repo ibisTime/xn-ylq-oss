@@ -44,7 +44,6 @@ class RoleAddEdit extends DetailUtil {
             }],
             keyName: 'key',
             valueName: 'value',
-            value: '1',
             required: true
         }, {
             title: '风控模块',

@@ -151,7 +151,7 @@ const ROUTES = [
     },
     // 业务管理--客户管理--报告列表
     {
-        path: '/customer/customers/reportlist/reportlibrary', component: asyncComponent(() => import('container/biz/customer/reportlist/reportlibrary'))
+        path: '/customer/reportlist', component: asyncComponent(() => import('container/biz/customer/reportlist/reportlibrary'))
     },
     // 客户管理-新增备注
     {
