@@ -15,7 +15,6 @@ class BlackListDetail extends DetailUtil {
             {
                 title: '姓名',
                 field: 'nickname',
-                search: true,
                 formatter: (v, data) => {
                     return data.businessMan.realName ? data.businessMan.realName : '';
                 }
@@ -34,9 +33,6 @@ class BlackListDetail extends DetailUtil {
                 }
         }, {
             title: '所属客户',
-            field: 'realName',
-            type: 'select',
-            search: true,
             formatter: (v, data) => {
                 return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
             }

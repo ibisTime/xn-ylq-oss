@@ -212,21 +212,15 @@ const ROUTES = [
     {
         path: '/buyads/buyads/addedit', component: asyncComponent(() => import('container/public/buyADS/buyADS-addedit'))
     },
-    // 业务管理--系统参数管理--安卓参数
+    // 业务管理--系统参数管理--认证接口费用管理
     {
-        path: '/general/andpublish', component: asyncComponent(() => import('container/general/andPublish'))
+        path: '/general/andmanagement', component: asyncComponent(() => import('container/general/andmanagement'))
     },
-    // 业务管理--系统参数管理--安卓参数--修改
+    // 业务管理--系统参数管理--认证接口费用管理--修改
     {
-        path: '/general/andpublish/addedit', component: asyncComponent(() => import('container/general/andPublish-addedit'))
-    }, // 业务管理--系统参数管理--苹果参数
-    {
-        path: '/general/iospublish', component: asyncComponent(() => import('container/general/iosPublish'))
-    },
-    // 业务管理--系统参数管理--苹果参数--修改
-    {
-        path: '/general/iospublish/addedit', component: asyncComponent(() => import('container/general/iosPublish-addedit'))
+        path: '/general/andmanagement/addedit', component: asyncComponent(() => import('container/general/andmanagement-addedit'))
     }
+
 ];
 
 export default ROUTES;

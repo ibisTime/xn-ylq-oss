@@ -11,7 +11,7 @@ import {
     setSearchData
 } from '@redux/biz/userquery/userbase';
 import {listWrapper} from 'common/js/build-list';
-import {showSucMsg, showWarnMsg, moneyFormat, getUserId} from 'common/js/util';
+import {showSucMsg, showWarnMsg, moneyFormat, getUserId, getCompanyCode} from 'common/js/util';
 import {activateUser, getUserById, getUser, addwhite, addblack} from 'api/user';
 
 @listWrapper(
@@ -29,7 +29,7 @@ class Userbase extends React.Component {
         Modal.confirm({
             okText: '确认',
             cancelText: '取消',
-            content: `确认${status === '0' ? '注销' : '激活'}用户？`,
+            content: `确认${status === '0' ? '禁止' : '恢复'}用户登录？`,
             onOk: () => {
                 this.props.doFetching();
                 return activateUser(code).then(() => {
@@ -49,7 +49,7 @@ class Userbase extends React.Component {
                 field: 'realName',
                 search: true,
                 render: (v, data) => {
-                    return data.businessMan.realName ? data.businessMan.realName : '';
+                    return data.realName ? data.realName : '';
                 }
             }, {
                 title: '手机号',
@@ -60,8 +60,13 @@ class Userbase extends React.Component {
                 field: 'userReferee'
             }, {
                 title: '所属客户',
-                field: 'keyword',
+                field: 'companyCode',
+                type: 'select',
                 search: true,
+                pageCode: '630115',
+                keyName: 'companyCode',
+                valueName: '{{realName.DATA}}-{{mobile.DATA}}',
+                searchName: 'keyword',
                 render: (v, data) => {
                     return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
                 }

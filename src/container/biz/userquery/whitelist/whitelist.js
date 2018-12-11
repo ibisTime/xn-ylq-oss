@@ -62,7 +62,6 @@ class WhiteList extends React.Component {
         }, {
                 title: '所属客户',
                 field: 'companyName',
-                type: 'select',
                 search: true,
                 pageCode: '630115',
                 keyName: 'userId',

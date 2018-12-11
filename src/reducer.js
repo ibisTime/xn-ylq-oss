@@ -54,12 +54,9 @@ import { userQueryBlackList } from './redux/biz/userquery/blacklist';
 // 系统参数管理--七牛云图片管理
 import { publicBuyAds } from './redux/public/buyADS';
 import { publicBuyAdsAddEdit } from './redux/public/buyADS-addedit';
-// 系统参数管理--安卓管理
-import { generalAndPublish } from './redux/general/andpublish';
-import { generalAndPublishAddEdit } from './redux/general/andpublish-addedit';
-// 系统参数管理--苹果管理
-import { generalIosPublish } from './redux/general/iospublish';
-import { generalIosPublishAddEdit } from './redux/general/iospublish-addedit';
+// 系统参数管理--认证接口费用管理
+import { generalAndManagement } from './redux/general/andmanagement';
+
 export default combineReducers({
   user,
   menu,
@@ -94,10 +91,7 @@ export default combineReducers({
     userQueryAddEdit,
     publicBuyAds,
     publicBuyAdsAddEdit,
-    generalAndPublish,
-    generalAndPublishAddEdit,
-    generalIosPublish,
-    generalIosPublishAddEdit,
+    generalAndManagement,
     accountQueryDetail,
     customerCustomersDetail,
     userQueryReporyLibraryDetil

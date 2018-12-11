@@ -9,26 +9,23 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/public/buyADS';
+} from '@redux/general/andmanagement';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, showSucMsg, getUserId, moneyFormat } from 'common/js/util';
+import { showWarnMsg, moneyFormat, showSucMsg, getUserId } from 'common/js/util';
 
 @listWrapper(
     state => ({
-        ...state.publicBuyAds,
+        ...state.generalAndManagement,
         parentCode: state.menu.subMenuCode
     }),
     { setTableData, clearSearchParam, doFetching, setBtnList,
         cancelFetching, setPagination, setSearchParam, setSearchData }
 )
-class IosPublish extends React.Component {
+class AndePublish extends React.Component {
     render() {
         const fields = [ {
             field: 'remark',
-            title: '参数说明',
-            render: (v, data) => {
-                return data.remark;
-            }
+            title: '参数说明'
         },
             {
                 title: '参数值',
@@ -39,14 +36,22 @@ class IosPublish extends React.Component {
             rowKey: 'id',
             pageCode: '623915',
             searchParams: {
-                type: 'QINIU'
+                type: '2'
             },
-            // 系统参数修改
-            edit: (keys, items) => {
-                this.props.history.push(`/buyads/buyads/addedit/addedit?code=${keys[0]}`);
+            btnEvent: {
+                // 修改
+                edit: (keys, items) => {
+                    if (!keys || !keys.length) {
+                        showWarnMsg('请选择记录');
+                    } else if (keys.length > 1) {
+                        showWarnMsg('请选择一条记录');
+                    }else {
+                    this.props.history.push(`/general/andmanagement/addedit?code=${keys[0]}`);
+                }
+                }
             }
         });
     }
 }
 
-export default IosPublish;
+export default AndePublish;

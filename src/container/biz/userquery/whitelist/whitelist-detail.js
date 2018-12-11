@@ -22,8 +22,7 @@ class WhiteListDetail extends DetailUtil {
             field: 'loginName'
         }, {
             title: '手机号',
-            field: 'mobile',
-            search: true
+            field: 'mobile'
         }, {
             title: '推荐人',
             field: 'businessMan',
@@ -32,9 +31,7 @@ class WhiteListDetail extends DetailUtil {
             }
         }, {
             title: '所属客户',
-            field: 'companyName',
-            type: 'select',
-            search: true,
+            field: 'keyword',
             formatter: (v, data) => {
                 return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
             }
