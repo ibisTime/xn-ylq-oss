@@ -52,7 +52,8 @@ class Customers extends React.Component {
                 field: 'realName'
             }, {
                 title: '手机号',
-                field: 'mobile',
+                field: 'keyword',
+                render: (v, data) => data ? data.mobile : '',
                 search: true
             }, {
                 title: '登录账号',

@@ -57,18 +57,10 @@ class Userbase extends React.Component {
                 search: true
             }, {
                 title: '推荐人',
-                field: 'businessMan',
-                render: (v, data) => {
-                    return data.businessMan.mobile ? data.businessMan.mobile : '';
-                }
+                field: 'userReferee'
             }, {
                 title: '所属客户',
-                field: 'companyCode',
-                type: 'select',
-                pageCode: '630115',
-                keyName: 'companyCode',
-                valueName: '{{realName.DATA}}',
-                searchName: 'keyword',
+                field: 'keyword',
                 search: true,
                 render: (v, data) => {
                     return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';

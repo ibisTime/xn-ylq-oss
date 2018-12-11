@@ -43,7 +43,6 @@ class WhiteList extends React.Component {
             {
                 title: '姓名',
                 field: 'realName',
-                search: true,
                 render: (v, data) => {
                     return data.businessMan ? data.businessMan.realName : '';
                 }

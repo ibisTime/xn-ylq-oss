@@ -26,7 +26,8 @@ class AccountQuery extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'realName',
+            field: 'keyword',
+            render: (v, data) => data ? data.realName : '',
             search: true
         }, {
             title: '账户余额',

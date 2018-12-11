@@ -25,7 +25,8 @@ class Flows extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'realName',
+            field: 'relaNameForQuery',
+            render: (v, data) => data ? data.realName : '',
             search: true
         }, {
             title: '业务类型',
