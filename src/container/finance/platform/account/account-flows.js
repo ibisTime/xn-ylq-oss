@@ -28,7 +28,8 @@ class PlatformFlows extends React.Component {
     render() {
         const fields = [{
             title: '户名',
-            field: 'realName',
+            field: 'relaNameForQuery',
+            render: (v, data) => data ? data.realName : '',
             search: true
         }, {
             title: '业务类型',
@@ -68,7 +69,7 @@ class PlatformFlows extends React.Component {
             fields,
             pageCode: 802320,
             searchParams: {
-                accountNumber: this.accountNumber
+                accountType: 'B'
             },
             buttons: [{
                 code: 'detail',

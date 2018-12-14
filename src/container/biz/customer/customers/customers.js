@@ -11,7 +11,7 @@ import {
     setSearchData
 } from '@redux/biz/customer/customers';
 import {listWrapper} from 'common/js/build-list';
-import {showWarnMsg, moneyFormat} from 'common/js/util';
+import {showWarnMsg, moneyFormat, formatFile} from 'common/js/util';
 import {activateJUser} from 'api/user';
 
 @listWrapper(
@@ -71,6 +71,20 @@ class Customers extends React.Component {
                     return data.account ? moneyFormat(data.account.amount) : '';
                 }
             }, {
+                title: 'app名',
+                field: 'name',
+                render: (v, data) => {
+                    return data.company ? data.company.name : '';
+                }
+            }, {
+                title: 'logo',
+                field: 'logo',
+                render: (v, data) => {
+                    if(data.company) {
+                        return (<div width={'30px'}><img width={'30px'} src={formatFile(data.company.logo)}/></div>);
+                    }
+                }
+            }, {
                 title: '注册时间',
                 field: 'createDatetime',
                 type: 'datetime'
@@ -114,13 +128,7 @@ class Customers extends React.Component {
                 },
                 //  报告列表
                 checklist: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else {
-                        this.props.history.push(`/customer/reportlist?code=${keys[0]}`);
-                    }
+                        this.props.history.push(`/customer/reportlist`);
                 },
                 // 注销
                 rock: (keys, items) => {

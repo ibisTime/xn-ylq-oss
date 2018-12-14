@@ -2,7 +2,10 @@ import React from 'react';
 import { Form } from 'antd';
 import { getQueryString } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
-
+const typeDict = {
+    'C': 'C端用户',
+    'W': '渠道'
+};
 @Form.create()
 class WhiteListDetail extends DetailUtil {
     constructor(props) {
@@ -14,8 +17,9 @@ class WhiteListDetail extends DetailUtil {
         const fields = [ {
             title: '姓名',
             field: 'realName',
+            search: true,
             formatter: (v, data) => {
-                return data.businessMan.realName ? data.businessMan.realName : '';
+                return data.realName ? data.realName : '';
             }
         }, {
             title: '登录账号',
@@ -25,9 +29,12 @@ class WhiteListDetail extends DetailUtil {
             field: 'mobile'
         }, {
             title: '推荐人',
-            field: 'businessMan',
-            formatter: (v, data) => {
-                return data.businessMan ? data.businessMan.mobile : '';
+            field: 'refereeWay',
+            formatter: (v, d) => {
+                if (d.refereeWay) {
+                    return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                }
+                return '';
             }
         }, {
             title: '所属客户',

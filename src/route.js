@@ -123,7 +123,7 @@ const ROUTES = [
   },
   // 业务管理 -- 用户管理 -- 会员查询 -- 账户查询
   {
-    path: '/user/users/accounts', component: asyncComponent(() => import('container/biz/user/users/user-accounts'))
+    path: '/user/users/accounts', component: asyncComponent(() => import('container/biz/user/user-accounts/user-accounts'))
   },
   // 业务管理 -- 用户管理 -- 账户查询
   {
@@ -151,7 +151,7 @@ const ROUTES = [
     },
     // 业务管理--客户管理--报告列表
     {
-        path: '/customer/reportlist', component: asyncComponent(() => import('container/biz/customer/reportlist/reportlibrary'))
+        path: '/customer/reportlist', component: asyncComponent(() => import('container/biz/customer/reportlist/reportlist'))
     },
     // 客户管理-新增备注
     {
@@ -178,11 +178,19 @@ const ROUTES = [
     },
     // 业务管理--用户查询--用户库
     {
-        path: '/userquery/userbase', component: asyncComponent(() => import('container/biz/userquery/userbase/userbase'))
+        path: '/userquery/userbase', component: asyncComponent(() => import('container/biz/userquery/userbase/userbases/userbase'))
     },
     // 业务管理--用户查询--用户库--添加备注
     {
         path: '/userquery/userqueryaddedit', component: asyncComponent(() => import('container/biz/userquery/userquery-addedit/userquery-addedit'))
+    },
+    // 业务管理--用户查询--用户库--报告列表
+    {
+        path: '/userquery/reportlist', component: asyncComponent(() => import('container/biz/userquery/userbase/reportlist/reportlist'))
+    },
+    // 业务管理--用户查询--用户库--最新报告
+    {
+        path: '/userquery/newreport', component: asyncComponent(() => import('container/biz/userquery/userbase/newreport/newreport'))
     },
     // 业务管理--用户查询--报告库
     {

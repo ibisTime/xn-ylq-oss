@@ -50,10 +50,10 @@ class WithdrawAddedit extends DetailUtil {
       field: 'payCardNo',
       title: '银行卡号'
     }, {
-      field: 'status',
-      title: '状态',
-      type: 'select',
-      key: 'jour_status'
+        field: 'status',
+        title: '状态',
+        type: 'select',
+        key: 'withdraw_status'
     }, {
       field: 'applyDatetime',
       title: '申请时间',

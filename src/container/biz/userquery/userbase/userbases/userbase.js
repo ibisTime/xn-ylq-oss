@@ -10,17 +10,19 @@ import {
     doFetching,
     cancelFetching,
     setSearchData
-} from '@redux/biz/userquery/reportlibrary';
+} from '@redux/biz/userquery/userbase';
 import {listWrapper} from 'common/js/build-list';
 import {showSucMsg, showWarnMsg, moneyFormat, getUserId, getCompanyCode} from 'common/js/util';
 import {activateUser, getUserById, getUser, addwhite, addblack} from 'api/user';
+
 const typeDict = {
     'C': 'C端用户',
     'W': '渠道'
 };
+
 @listWrapper(
     state => ({
-        ...state.userQueryReporyLibrary,
+        ...state.userQueryUserBase,
         parentCode: state.menu.subMenuCode
     }),
     {
@@ -126,11 +128,11 @@ class Userbase extends React.Component {
             fields,
             rowKey: 'userId',
             pageCode: 805120,
-            code: this.code,
             searchParams: {
                 companyCode: ''
             },
             btnEvent: {
+                // 加入黑名单
                 addblack: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
@@ -155,6 +157,7 @@ class Userbase extends React.Component {
                         });
                     }
                 },
+                // 加入白名单
                 addwhite: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
@@ -179,26 +182,10 @@ class Userbase extends React.Component {
                         });
                     }
                 },
-                // 详情
-                detail: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else {
-                        window.open(REPORT_URL + `?userId=` + items[0].userId);
-                    }
-                },
                 //  报告列表
-                checklist: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    } else {
-                        this.props.history.push(`/userquery/reportlist?userId=${keys[0]}`);
-                    }
-                },
+                    checklist: (keys, items) => {
+                            this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
+                    },
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {

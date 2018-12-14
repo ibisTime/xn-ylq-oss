@@ -13,6 +13,11 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
 import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
+import { REPORT_URL } from 'common/js/config';
+const typeDict = {
+    'C': 'C端用户',
+    'W': '渠道'
+};
 @listWrapper(
     state => ({
         ...state.userQueryBlackList,
@@ -26,8 +31,9 @@ class BlackList extends React.Component {
         const fields = [ {
             title: '姓名',
             field: 'realName',
+            search: true,
             render: (v, data) => {
-                return data.businessMan ? data.businessMan.realName : '';
+                return data.realName ? data.realName : '';
             }
         }, {
             title: '登录账号',
@@ -38,9 +44,12 @@ class BlackList extends React.Component {
             search: true
         }, {
             title: '推荐人',
-            field: 'businessMan',
-            render: (v, data) => {
-                return data.businessMan ? data.businessMan.mobile : '';
+            field: 'userReferee',
+            render: (v, d) => {
+                if (d.refereeWay) {
+                    return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                }
+                return '';
             }
         }, {
             title: '所属客户',
@@ -76,16 +85,6 @@ class BlackList extends React.Component {
                 isBlackList: '1'
             },
             btnEvent: {
-                // 添加备注
-                addRemark: (keys, items) => {
-                    if (!keys || !keys.length) {
-                        showWarnMsg('请选择记录');
-                    } else if (keys.length > 1) {
-                        showWarnMsg('请选择一条记录');
-                    }else {
-                        this.props.history.push(`/userquery/userqueryaddedit?code=${keys[0]}`);
-                    }
-                },
                 deleteblack: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
@@ -120,10 +119,21 @@ class BlackList extends React.Component {
                         this.props.history.push(`/userquery/blacklist/detail?detail=1&v=1&code=${keys[0]}`);
                     }
                 },
+                //  最新报告
+                newreport: (keys, items) => {
+                    if (!keys || !keys.length) {
+                        showWarnMsg('请选择记录');
+                    } else if (keys.length > 1) {
+                        showWarnMsg('请选择一条记录');
+                    } else {
+                        window.open(REPORT_URL + `?userId=` + items[0].userId);
+                    }
+                },
                 //  报告列表
-                checklist: () => {
-                    this.props.history.push(`/customer/customers/reportlist/reportlibrary`);
-                }}
+                checklist: (keys, items) => {
+                    this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
+                }
+            }
         });
     }
 }

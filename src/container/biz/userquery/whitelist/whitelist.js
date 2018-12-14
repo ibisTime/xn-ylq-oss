@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+import { REPORT_URL } from 'common/js/config';
 import {
     setTableData,
     setPagination,
@@ -13,6 +14,10 @@ import {
 import { listWrapper } from 'common/js/build-list';
 import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
 import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
+const typeDict = {
+    'C': 'C端用户',
+    'W': '渠道'
+};
 @listWrapper(
     state => ({
         ...state.userQueryWhiteList,
@@ -43,8 +48,9 @@ class WhiteList extends React.Component {
             {
                 title: '姓名',
                 field: 'realName',
+                search: true,
                 render: (v, data) => {
-                    return data.businessMan ? data.businessMan.realName : '';
+                    return data.realName ? data.realName : '';
                 }
             }, {
             title: '登录账号',
@@ -54,11 +60,14 @@ class WhiteList extends React.Component {
             field: 'mobile',
             search: true
         }, {
-            title: '推荐人',
-            field: 'businessMan',
-            render: (v, data) => {
-                return data.businessMan ? data.businessMan.mobile : '';
-            }
+                title: '推荐人',
+                field: 'userReferee',
+                render: (v, d) => {
+                    if (d.refereeWay) {
+                        return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                    }
+                    return '';
+                }
         }, {
                 title: '所属客户',
                 field: 'companyName',
@@ -127,6 +136,7 @@ class WhiteList extends React.Component {
                         });
                     }
                 },
+                // 白名单详情
                 detail: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
@@ -136,20 +146,21 @@ class WhiteList extends React.Component {
                         this.props.history.push(`/userquery/whitelist/detail?detail=1&v=1&code=${keys[0]}`);
                     }
                 },
-                //  报告列表
-                checklist: () => {
-                    this.props.history.push(`/customer/customers/reportlist/reportlibrary`);
-                },
-                // 注销
-                rock: (keys, items) => {
+                //  最新报告
+                newreport: (keys, items) => {
                     if (!keys || !keys.length) {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.rockOrActive(items[0].status, keys[0]);
+                        window.open(REPORT_URL + `?userId=` + items[0].userId);
                     }
-                }}
+                },
+                //  报告列表
+                checklist: (keys, items) => {
+                    this.props.history.push(`/customer/reportlist?code=${keys[0]}`);
+                }
+             }
         });
     }
 }

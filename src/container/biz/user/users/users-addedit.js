@@ -2,7 +2,10 @@ import React from 'react';
 import { Form } from 'antd';
 import { getQueryString } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
-
+const typeDict = {
+    'C': 'C端用户',
+    'W': '渠道'
+};
 @Form.create()
 class UsersAddEdit extends DetailUtil {
   constructor(props) {
@@ -15,9 +18,14 @@ class UsersAddEdit extends DetailUtil {
       title: '手机号',
       field: 'mobile'
     }, {
-      title: '推荐人',
-      field: 'mobile',
-      formatter: (v, d) => d.refereeUser ? d.refereeUser.mobile : ''
+        title: '推荐人',
+        field: 'refereeWay',
+        formatter: (v, d) => {
+            if (d.refereeWay) {
+                return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+            }
+            return '';
+        }
     }, {
       title: '昵称',
       field: 'nickname'
