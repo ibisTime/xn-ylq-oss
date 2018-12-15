@@ -60,6 +60,10 @@ const ROUTES = [
   {
     path: '/platform/account/flows', component: asyncComponent(() => import('container/finance/platform/account/account-flows'))
   },
+    // 财务管理 -- 平台账户 -- 账户查询 -- 提现回录
+    {
+        path: '/platform/account/enter', component: asyncComponent(() => import('container/finance/platform/account/account-enter'))
+    },
   // 财务管理 -- 平台账户 -- 账户查询 -- 资金分布
   {
     path: '/platform/account/accounts', component: asyncComponent(() => import('container/finance/platform/account/account-list'))
@@ -227,8 +231,15 @@ const ROUTES = [
     // 业务管理--系统参数管理--认证接口费用管理--修改
     {
         path: '/general/andmanagement/addedit', component: asyncComponent(() => import('container/general/andmanagement-addedit'))
+    },
+    // 业务管理--系统参数管理--文章管理
+    {
+        path: '/general/articlemanagement/general/articlemanagement', component: asyncComponent(() => import('container/public/articlemanagement/articlemanagement'))
+    },
+    // 业务管理--系统参数管理--文章管理-修改
+    {
+        path: '/general/articlemanagement/addedit', component: asyncComponent(() => import('container/public/articlemanagement/articlemanagement-addedit'))
     }
-
 ];
 
 export default ROUTES;

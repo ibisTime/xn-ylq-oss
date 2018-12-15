@@ -26,9 +26,17 @@ class Recharges extends React.Component {
       field: 'code',
       title: '编号'
     }, {
-      field: 'realName',
-      title: '户名',
-      search: true
+        title: '户名',
+        field: 'realName',
+        type: 'select',
+        search: true,
+        pageCode: '630115',
+        keyName: 'companyCode',
+        valueName: 'realName',
+        searchName: 'keyword',
+        render: (v, data) => {
+            return data ? data.realName : '';
+        }
     }, {
       field: 'amount',
       title: '充值金额',
@@ -65,7 +73,8 @@ class Recharges extends React.Component {
       pageCode: 802345,
       searchParams: {
           accountType: 'B',
-        channelType: '90'
+        channelType: '90',
+          companyCode: ''
       },
       btnEvent: {
         check: (keys, items) => {

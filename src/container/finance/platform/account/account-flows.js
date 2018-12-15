@@ -67,9 +67,10 @@ class PlatformFlows extends React.Component {
         }];
         return this.props.buildList({
             fields,
-            pageCode: 802320,
+            pageCode: 802322,
             searchParams: {
-                accountType: 'B'
+                accountType: 'P',
+                accountNumber: this.accountNumber
             },
             buttons: [{
                 code: 'detail',

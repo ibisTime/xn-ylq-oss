@@ -115,7 +115,7 @@ class RoleAddEdit extends DetailUtil {
                                 'appName': '',
                                 'logo': ''
                             });
-                        }, 1000);
+                        }, 500);
                     }).catch(this.cancelFetching);
                 }
             }]

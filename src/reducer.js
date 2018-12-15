@@ -53,7 +53,7 @@ import { userQueryWhiteList } from './redux/biz/userquery/whitelist';
 import { userQueryBlackList } from './redux/biz/userquery/blacklist';
 // 系统参数管理--七牛云图片管理
 import { publicBuyAds } from './redux/public/buyADS';
-import { publicBuyAdsAddEdit } from './redux/public/buyADS-addedit';
+import { publicArticeManagement } from './redux/public/articlemanagement';
 // 系统参数管理--认证接口费用管理
 import { generalAndManagement } from './redux/general/andmanagement';
 
@@ -90,7 +90,7 @@ export default combineReducers({
     userQueryBlackList,
     userQueryAddEdit,
     publicBuyAds,
-    publicBuyAdsAddEdit,
+    publicArticeManagement,
     generalAndManagement,
     accountQueryDetail,
     customerCustomersDetail,

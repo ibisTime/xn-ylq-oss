@@ -31,12 +31,15 @@ class BlackListDetail extends DetailUtil {
             search: true
         }, {
                 title: '推荐人',
-                field: 'refereeWay',
+                field: 'userReferee',
                 formatter: (v, d) => {
                     if (d.refereeWay) {
                         return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                    }else if (d.refereeUser) {
+                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                    }else {
+                        return '';
                     }
-                    return '';
                 }
         }, {
             title: '所属客户',

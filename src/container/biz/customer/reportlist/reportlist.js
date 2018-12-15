@@ -53,8 +53,11 @@ class Reportlist extends React.Component {
                 render: (v, d) => {
                     if (d.refereeWay) {
                         return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                    }else if (d.refereeUser) {
+                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                    }else {
+                        return '';
                     }
-                    return '';
                 }
             }, {
                 title: '所属客户',

@@ -16,8 +16,8 @@ import {showSucMsg, showWarnMsg, moneyFormat, getUserId, getCompanyCode} from 'c
 import {activateUser, getUserById, getUser, addwhite, addblack} from 'api/user';
 
 const typeDict = {
-    'C': 'C端用户',
-    'W': '渠道'
+    'W': '渠道',
+    'C': 'C端用户'
 };
 
 @listWrapper(
@@ -67,8 +67,11 @@ class Userbase extends React.Component {
                 render: (v, d) => {
                     if (d.refereeWay) {
                         return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                    }else if (d.refereeUser) {
+                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                    }else {
+                        return '';
                     }
-                    return '';
                 }
             }, {
                 title: '所属客户',

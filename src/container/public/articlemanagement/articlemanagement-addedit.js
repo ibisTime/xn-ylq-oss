@@ -1,10 +1,10 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString, moneyFormat } from 'common/js/util';
+import { getQueryString } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
 
 @Form.create()
-class AndmanagementAddedit extends DetailUtil {
+class BuyAdsAddedit extends DetailUtil {
     constructor(props) {
         super(props);
         this.code = getQueryString('code', this.props.location.search);
@@ -16,19 +16,14 @@ class AndmanagementAddedit extends DetailUtil {
     render() {
         const fields = [{
             field: 'remark',
-            title: '参数说明',
+            title: '说明',
             required: true,
             maxlength: 20,
             readonly: true
-        },
-            {
-                title: '参数值',
+        }, {
+                title: '内容',
                 field: 'cvalue',
                 type: 'textarea',
-                formatter: (v, data) => {
-                    return moneyFormat(data.cvalue);
-                },
-                normalArea: true,
                 required: true
             }];
         return this.buildDetail({
@@ -46,4 +41,4 @@ class AndmanagementAddedit extends DetailUtil {
     }
 }
 
-export default AndmanagementAddedit;
+export default BuyAdsAddedit;

@@ -76,7 +76,7 @@ class Flows extends React.Component {
             fields,
             pageCode: 802320,
             searchParams: {
-                accountType: 'B'
+                accountType: 'P'
             },
             // 流水详情
             detail: (keys, items) => {

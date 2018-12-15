@@ -8,7 +8,7 @@ export const PIC_BASEURL_L = '?imageMogr2/auto-orient/thumbnail/!1000x1000r';
 // 系统根菜单编号
 export const ROOT_MENU_CODE = 'COINSM201700000000000000';
 // 报告链接 链接
-export const REPORT_URL = 'http://120.26.6.213:7909/report.html';
+export const REPORT_URL = 'http://boss.sl.hichengdai.com/report.html';
 // 系统userid
 export const SYS_USER = 'SYS_USER';
 
