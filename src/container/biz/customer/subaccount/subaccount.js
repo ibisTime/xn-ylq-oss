@@ -79,16 +79,16 @@ class RoleAddEdit extends DetailUtil {
              amount: true,
             required: true
         }, {
-                title: 'APP名',
-                field: 'appName',
-                required: true
-            }, {
-                title: 'Logo',
-                field: 'logo',
-                type: 'img',
-                single: true,
-                required: true
-            }];
+            title: 'APP名',
+            field: 'appName',
+            required: true
+        }, {
+            title: 'Logo',
+            field: 'logo',
+            type: 'img',
+            single: true,
+            required: true
+        }];
         return this.buildDetail({
             fields,
             code: this.code,
@@ -103,18 +103,7 @@ class RoleAddEdit extends DetailUtil {
                         showSucMsg('操作成功');
                         this.cancelFetching();
                         setTimeout(() => {
-                            this.props.form.setFieldsValue({
-                                'loginName': '',
-                                'realName': '',
-                                'mobile': '',
-                                'loginPwd': '',
-                                'isJt': '',
-                                'isFk': '',
-                                'isDl': '',
-                                'precharge': '',
-                                'appName': '',
-                                'logo': ''
-                            });
+                            location.reload(true);
                         }, 500);
                     }).catch(this.cancelFetching);
                 }
