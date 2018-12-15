@@ -114,38 +114,32 @@ class Reportlist extends React.Component {
                 title: '备注',
                 field: 'remark'
             }];
-        return (
-            <div>
-                {
-                    this.props.buildList({
-                        fields,
-                        rowKey: 'userId',
-                        pageCode: 805120,
-                        code: this.code,
-                        searchParams: {
-                            companyCode: ''
-                        },
-                        buttons: [{
-                            code: 'detail',
-                            name: '详情',
-                            handler: (keys, items) => {
-                                if (!keys || !keys.length) {
-                                    showWarnMsg('请选择记录');
-                                } else if (keys.length > 1) {
-                                    showWarnMsg('请选择一条记录');
-                                } else {
-                                    window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
-                                }
-                            }
-                        }
-                        ]
-                    })
+        return this.props.buildList({
+                fields,
+                rowKey: 'userId',
+                pageCode: 805120,
+                code: this.code,
+                searchParams: {
+                    companyCode: ''
+                },
+            buttons: [{
+                name: '详情',
+                code: 'detail',
+                handler: (keys, items) => {
+                    if (!keys.length) {
+                        showWarnMsg('请选择记录');
+                    } else if (keys.length > 1) {
+                        showWarnMsg('请选择一条记录');
+                    } else {
+                        window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
+                    }
                 }
-                <div style={{width: '100%', marginTop: '15px', textAlign: 'center'}}>
-                    <Button onClick={() => this.goBack()} type="primary">返回</Button>
-                </div>
-            </div>
-        );
+            }, {
+                name: '返回',
+                code: 'back',
+                handler: () => this.props.history.go(-1)
+            }]
+        });
     }
 }
 export default Reportlist;
