@@ -161,7 +161,7 @@ class WhiteList extends React.Component {
                 },
                 //  报告列表
                 checklist: (keys, items) => {
-                    this.props.history.push(`/customer/reportlist?code=${keys[0]}`);
+                    this.props.history.push(`/userquery/whitelist/reportlist`);
                 }
              }
         });

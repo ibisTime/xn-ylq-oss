@@ -132,7 +132,7 @@ class BlackList extends React.Component {
                 },
                 //  报告列表
                 checklist: (keys, items) => {
-                    this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
+                    this.props.history.push(`/userquery/blacklist/reportlist`);
                 }
             }
         });

@@ -128,7 +128,7 @@ class Customers extends React.Component {
                 },
                 //  报告列表
                 checklist: (keys, items) => {
-                        this.props.history.push(`/customer/reportlist`);
+                        this.props.history.push(`/customer/customers/reportlist`);
                 },
                 // 注销
                 rock: (keys, items) => {

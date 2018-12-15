@@ -81,10 +81,6 @@ class CustomerDetail extends DetailUtil {
                 keyName: 'key',
                 valueName: 'value'
             }, {
-                title: '预充值',
-                field: 'precharge',
-                amount: true
-            }, {
                 title: '状态',
                 field: 'status',
                 type: 'select',
