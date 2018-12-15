@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal} from 'antd';
-import { REPORT_URL } from 'common/js/config';
+import {REPORT_URL} from 'common/js/config';
 import {
     setTableData,
     setPagination,
@@ -64,14 +64,12 @@ class Userbase extends React.Component {
             }, {
                 title: '推荐人',
                 field: 'refereeWay',
-                //   render: (v, data) => {
-               // return data ? moneyFormat(data.amount) : '';
                 render: (v, d) => {
                     if (d.refereeWay) {
                         return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                    }else if (d.refereeUser) {
+                    } else if (d.refereeUser) {
                         return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                    }else {
+                    } else {
                         return '';
                     }
                 }
@@ -81,6 +79,9 @@ class Userbase extends React.Component {
                 type: 'select',
                 search: true,
                 pageCode: '630115',
+                params: {
+                    companyCode: ''
+                },
                 keyName: 'companyCode',
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
@@ -133,6 +134,12 @@ class Userbase extends React.Component {
             fields,
             rowKey: 'userId',
             pageCode: 805120,
+            beforeSearch: (data) => {
+                if (data.companyCode === '' || !data.companyCode) {
+                    data.companyCode = '';
+                }
+                return data;
+            },
             btnEvent: {
                 // 加入黑名单
                 addblack: (keys, items) => {

@@ -409,10 +409,7 @@ export default class ListComponent extends React.Component {
             };
         }
         if (this.options.beforeSearch) {
-            searchParam = {
-                ...searchParam,
-                ...this.options.befoteSearch
-            };
+            searchParam = this.options.beforeSearch(searchParam);
         }
         this.props.doFetching();
         const {pagination} = this.props;
