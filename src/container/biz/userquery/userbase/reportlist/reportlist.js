@@ -30,6 +30,7 @@ class Reportlist extends React.Component {
     constructor(props) {
         super(props);
         this.userId = getQueryString('userId', this.props.location.search) || '';
+        this.companyCode = getQueryString('companyCode', this.props.location.search) || '';
     }
     goBack = () => {
         this.props.history.go(-1);
@@ -52,9 +53,9 @@ class Reportlist extends React.Component {
                 field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
@@ -132,8 +133,8 @@ class Reportlist extends React.Component {
                                     showWarnMsg('请选择记录');
                                 } else if (keys.length > 1) {
                                     showWarnMsg('请选择一条记录');
-                                } else{
-                                    window.open(REPORT_URL + `?userId=` + items[0].userId);
+                                } else {
+                                    window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
                                 }
                             }
                         }
@@ -147,5 +148,4 @@ class Reportlist extends React.Component {
         );
     }
 }
-
 export default Reportlist;

@@ -24,11 +24,6 @@ class AndmanagementAddedit extends DetailUtil {
             {
                 title: '参数值',
                 field: 'cvalue',
-                type: 'textarea',
-                formatter: (v, data) => {
-                    return moneyFormat(data.cvalue);
-                },
-                normalArea: true,
                 required: true
             }];
         return this.buildDetail({

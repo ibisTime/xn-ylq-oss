@@ -36,57 +36,6 @@ class Account extends React.Component {
     goWithdraw(accountNumber) {
         this.props.history.push(`/platform/account/enter?code=${accountNumber}`);
     }
-  // 手动增发
-  goAdd(currency) {
-    this.currency = currency;
-    this.setState({ visible: true });
-  }
-  onCancel = () => {
-    this.setState({ visible: false });
-  }
-  // 获取输入框类型的控件
-  getInputComp(field, title, amount) {
-    let rules = [{
-      required: true,
-      message: '必填字段'
-    }];
-      if (amount) {
-          rules.push({
-              pattern: /(^[1-9](,\d{3}|[0-9])*(\.\d{1,2})?$)|([0])/,
-              message: '金额必须>=0，且小数点后最多2位'
-          });
-      }
-      const props = {
-          rules,
-          title,
-          field,
-          label: title,
-          getFieldDecorator: this.props.form.getFieldDecorator,
-          getFieldError: this.props.form.getFieldError,
-          getFieldValue: this.props.form.getFieldValue
-      };
-      return <CInput key={field} {...props} />;
-  }
-    // 页面提交
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                this.setState({ btnFetching: true });
-                values.updater = getUserId();
-                values.amount *= 1000;
-                values.currency = this.currency;
-                fetch(802342, values).then(() => {
-                    this.props.initData();
-                    showSucMsg('操作成功');
-                    this.setState({
-                        btnFetching: false,
-                        visible: false
-                    });
-                }).catch(() => this.setState({ btnFetching: false }));
-            }
-        });
-    }
   render() {
       const { visible, btnFetching } = this.state;
     const { cnyAccount, wxAccount } = this.props;
@@ -95,8 +44,8 @@ class Account extends React.Component {
         <Spin spinning={this.props.fetching}>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={8} style={{marginBottom: '20px', width: '350px'}}>
-              <Card title="盈亏账户">¥{moneyFormat(cnyAccount.amount || 0)}
-                <Button style={{float: 'right'}} onClick={() => this.goFlows(cnyAccount.accountNumber)} type="primary">流水查询</Button> </Card>
+              <Card style={{paddingTop: '5px', paddingBottom: '5px'}} title="盈亏账户"extra={<Button style={{float: 'right', width: '90px', heigth: '30px'}} onClick={() => this.goFlows(cnyAccount.accountNumber)} type="primary">资金流水</Button> } >¥{moneyFormat(cnyAccount.amount || 0)}
+                </Card>
             </Col>
               <Col span={8} style={{marginBottom: '20px', width: '350px'}}>
                 <Card title="线下托管账户" extra={

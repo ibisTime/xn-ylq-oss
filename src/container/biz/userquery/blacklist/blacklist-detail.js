@@ -34,9 +34,9 @@ class BlackListDetail extends DetailUtil {
                 field: 'userReferee',
                 formatter: (v, d) => {
                     if (d.refereeWay) {
-                        return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }

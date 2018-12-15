@@ -28,7 +28,7 @@ class CustomerDetail extends DetailUtil {
                 title: '累计消费',
                 field: 'outAmount',
                 formatter: (v, data) => {
-                    return data.account ? moneyFormat(data.account.outAmount) : '';
+                    return data ? moneyFormat(data.outAmount) : '';
                 }
             }, {
                 title: '账户余额',

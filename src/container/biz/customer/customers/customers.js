@@ -62,7 +62,7 @@ class Customers extends React.Component {
                 title: '累计消费',
                 field: 'outAmount',
                 render: (v, data) => {
-                    return data.account ? moneyFormat(data.account.outAmount) : '';
+                    return data ? moneyFormat(data.outAmount) : '';
                 }
             }, {
                 title: '账户余额',

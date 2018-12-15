@@ -39,7 +39,7 @@ class FlowsAddedit extends DetailUtil {
             title: '状态',
             field: 'status',
             type: 'select',
-            key: 'user_status'
+            key: 'jour_status'
         }, {
             title: '对账人',
             field: 'checkUser'

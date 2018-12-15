@@ -52,9 +52,9 @@ class Reportlist extends React.Component {
                 field: 'refereeWay',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return `${d.refereeWay.name}(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return `${d.refereeUser.realName}(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
@@ -133,7 +133,7 @@ class Reportlist extends React.Component {
                                 } else if (keys.length > 1) {
                                     showWarnMsg('请选择一条记录');
                                 } else{
-                                    window.open(REPORT_URL + `?userId=` + items[0].userId);
+                                    window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
                                 }
                             }
                         }

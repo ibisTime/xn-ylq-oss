@@ -234,7 +234,7 @@ const ROUTES = [
     },
     // 业务管理--系统参数管理--文章管理
     {
-        path: '/general/articlemanagement/general/articlemanagement', component: asyncComponent(() => import('container/public/articlemanagement/articlemanagement'))
+        path: '/general/articlemanagement', component: asyncComponent(() => import('container/public/articlemanagement/articlemanagement'))
     },
     // 业务管理--系统参数管理--文章管理-修改
     {

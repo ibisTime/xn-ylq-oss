@@ -29,10 +29,7 @@ class AndePublish extends React.Component {
         },
             {
                 title: '参数值',
-                field: 'cvalue',
-                render: (v, data) => {
-                    return moneyFormat(data.cvalue);
-                }
+                field: 'cvalue'
             }];
         return this.props.buildList({
             fields,
