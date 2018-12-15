@@ -183,9 +183,15 @@ class Userbase extends React.Component {
                     }
                 },
                 //  报告列表
+<<<<<<< HEAD
                     checklist: (keys, items) => {
                             this.props.history.push(`/userquery/userbases/reportlist`);
                     },
+=======
+                checklist: (keys, items) => {
+                    this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
+                },
+>>>>>>> 6f20b5ffe7ccee3a2fc1d8eb352c032261a11be1
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {
@@ -193,7 +199,11 @@ class Userbase extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
+<<<<<<< HEAD
                         window.open(REPORT_URL + `?userId=` + items[0].userId + `&companyCode=` + items[0].companyCode);
+=======
+                        window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
+>>>>>>> 6f20b5ffe7ccee3a2fc1d8eb352c032261a11be1
                     }
                 },
                 // 注销
