@@ -122,7 +122,7 @@ class Reportlist extends React.Component {
                             companyCode: ''
                         },
             buttons: [{
-                            name: '详情',
+                            name: '报告详情',
                             code: 'detail',
                             handler: (keys, items) => {
                                 if (!keys.length) {
@@ -130,7 +130,7 @@ class Reportlist extends React.Component {
                                 } else if (keys.length > 1) {
                                     showWarnMsg('请选择一条记录');
                                 } else {
-                                    this.props.history.push(`${this.props.location.pathname}/addedit?code=${keys[0]}&v=1`);
+                                    window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
                                 }
                             }
                         }, {
