@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from 'antd';
+import { Modal } from 'antd';
 import {
     setTableData,
     setPagination,
@@ -10,29 +10,25 @@ import {
     cancelFetching,
     setSearchData
 } from '@redux/biz/userquery/blacklist';
-import {listWrapper} from 'common/js/build-list';
-import {showSucMsg, showWarnMsg, moneyFormat, getUserId} from 'common/js/util';
-import {activateJUser, getUserById, getUser, addwhite, addblack} from 'api/user';
-import {REPORT_URL} from 'common/js/config';
-
+import { listWrapper } from 'common/js/build-list';
+import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
+import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
+import { REPORT_URL } from 'common/js/config';
 const typeDict = {
     'C': 'C端用户',
     'W': '渠道'
 };
-
 @listWrapper(
     state => ({
         ...state.userQueryBlackList,
         parentCode: state.menu.subMenuCode
     }),
-    {
-        setTableData, clearSearchParam, doFetching, setBtnList,
-        cancelFetching, setPagination, setSearchParam, setSearchData
-    }
+    { setTableData, clearSearchParam, doFetching, setBtnList,
+        cancelFetching, setPagination, setSearchParam, setSearchData }
 )
 class BlackList extends React.Component {
     render() {
-        const fields = [{
+        const fields = [ {
             title: '姓名',
             field: 'realName',
             search: true,
@@ -47,24 +43,27 @@ class BlackList extends React.Component {
             field: 'mobile',
             search: true
         }, {
+            title: '推荐人',
+            field: 'userReferee',
             render: (v, d) => {
                 if (d.refereeWay) {
-                    return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                } else if (d.refereeUser) {
-                    return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                } else {
+                    return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
+                }else if (d.refereeUser) {
+                    return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
+                }else {
                     return '';
                 }
             }
         }, {
             title: '所属客户',
             field: 'companyCode',
+            type: 'select',
             search: true,
             pageCode: '630115',
             params: {
                 companyCode: ''
             },
-            keyName: 'userId',
+            keyName: 'companyCode',
             valueName: '{{realName.DATA}}-{{mobile.DATA}}',
             searchName: 'keyword',
             render: (v, data) => {
@@ -89,8 +88,13 @@ class BlackList extends React.Component {
             rowKey: 'userId',
             pageCode: 805120,
             searchParams: {
-                companyCode: '',
                 isBlackList: '1'
+            },
+            beforeSearch: (data) => {
+                if (data.companyCode === '' || !data.companyCode) {
+                    data.companyCode = '';
+                }
+                return data;
             },
             btnEvent: {
                 deleteblack: (keys, items) => {
@@ -100,7 +104,7 @@ class BlackList extends React.Component {
                         showWarnMsg('请选择一条记录');
                     } else if (items[0].isBlackList === '0') {
                         showWarnMsg('该用户已移除黑名单');
-                    } else {
+                    }else {
                         Modal.confirm({
                             okText: '确认',
                             cancelText: '取消',

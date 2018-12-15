@@ -49,12 +49,12 @@ class Reportlist extends React.Component {
                 search: true
             }, {
                 title: '推荐人',
-                field: 'refereeWay',
+                field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
@@ -113,10 +113,7 @@ class Reportlist extends React.Component {
                 title: '备注',
                 field: 'remark'
             }];
-        return (
-            <div>
-                {
-                    this.props.buildList({
+        return this.props.buildList({
                         fields,
                         rowKey: 'userId',
                         pageCode: 805120,
@@ -124,27 +121,24 @@ class Reportlist extends React.Component {
                         searchParams: {
                             companyCode: ''
                         },
-                        buttons: [{
-                            code: 'detail',
+            buttons: [{
                             name: '详情',
+                            code: 'detail',
                             handler: (keys, items) => {
-                                if (!keys || !keys.length) {
+                                if (!keys.length) {
                                     showWarnMsg('请选择记录');
                                 } else if (keys.length > 1) {
                                     showWarnMsg('请选择一条记录');
-                                } else{
-                                    window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
+                                } else {
+                                    this.props.history.push(`${this.props.location.pathname}/addedit?code=${keys[0]}&v=1`);
                                 }
                             }
-                        }
-                        ]
-                    })
-                }
-                <div style={{width: '100%', marginTop: '15px', textAlign: 'center'}}>
-                    <Button onClick={() => this.goBack()} type="primary">返回</Button>
-                </div>
-            </div>
-        );
+                        }, {
+                            name: '返回',
+                            code: 'back',
+                            handler: () => this.props.history.go(-1)
+                        }]
+        });
     }
 }
 

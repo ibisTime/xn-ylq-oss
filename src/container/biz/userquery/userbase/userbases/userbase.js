@@ -63,13 +63,13 @@ class Userbase extends React.Component {
                 search: true
             }, {
                 title: '推荐人',
-                field: 'refereeWay',
+                field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                    } else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
-                    } else {
+                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
+                    }else if (d.refereeUser) {
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
+                    }else {
                         return '';
                     }
                 }
@@ -192,9 +192,9 @@ class Userbase extends React.Component {
                     }
                 },
                 //  报告列表
-                checklist: (keys, items) => {
-                    this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
-                },
+                    checklist: (keys, items) => {
+                            this.props.history.push(`/userquery/userbases/reportlist`);
+                    },
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {
