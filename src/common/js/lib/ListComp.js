@@ -408,6 +408,12 @@ export default class ListComponent extends React.Component {
                 ...this.options.searchParams
             };
         }
+        if (this.options.beforeSearch) {
+            searchParam = {
+                ...searchParam,
+                ...this.options.befoteSearch
+            };
+        }
         this.props.doFetching();
         const {pagination} = this.props;
         fetch(this.options.pageCode, {
@@ -565,7 +571,7 @@ export default class ListComponent extends React.Component {
         getFieldDecorator: this.props.form.getFieldDecorator,
         getFieldValue: this.props.form.getFieldValue,
         getFieldError: this.props.form.getFieldError,
-        isLoaded: this.props.isLoaded
+        isLoaded: true
       };
       return <CSearchSelect key={item.field} {...props} />;
     }

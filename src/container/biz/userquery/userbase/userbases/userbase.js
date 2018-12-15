@@ -134,7 +134,6 @@ class Userbase extends React.Component {
             rowKey: 'userId',
             pageCode: 805120,
             searchParams: {
-                companyCode: ''
             },
             btnEvent: {
                 // 加入黑名单
