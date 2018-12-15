@@ -28,9 +28,21 @@ class Withdraw extends React.Component {
       field: 'code',
       title: '编号'
     }, {
-        field: 'realName',
         title: '户名',
-        search: true
+        field: 'accountNumber',
+        type: 'select',
+        search: true,
+        pageCode: '802300',
+        params: {
+            status: '0',
+            type: 'NOT_P'
+        },
+        keyName: 'accountNumber',
+        valueName: '{{realName.DATA}}',
+        searchName: 'mobileForQuery',
+        render: (v, data) => {
+            return data ? data.realName : '';
+        }
     }, {
         field: 'payCardInfo',
         title: '银行名称'

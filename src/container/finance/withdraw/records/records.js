@@ -28,15 +28,27 @@ class Records extends React.Component {
       field: 'code',
       title: '编号'
     }, {
+        title: '户名',
+        field: 'accountNumber',
+        type: 'select',
+        search: true,
+        pageCode: '802300',
+        params: {
+            status: '0',
+            type: 'NOT_P'
+        },
+        keyName: 'accountNumber',
+        valueName: '{{realName.DATA}}',
+        searchName: 'mobileForQuery',
+        render: (v, data) => {
+            return data ? data.realName : '';
+        }
+    }, {
       field: 'payCardInfo',
       title: '银行名称'
     }, {
       field: 'payCardNo',
       title: '银行卡号'
-    }, {
-      field: 'realName',
-      title: '户名',
-      search: true
     }, {
       field: 'amount',
       title: '取现金额',
