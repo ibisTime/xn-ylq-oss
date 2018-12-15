@@ -63,14 +63,12 @@ class Userbase extends React.Component {
                 search: true
             }, {
                 title: '推荐人',
-                field: 'refereeWay',
-                //   render: (v, data) => {
-               // return data ? moneyFormat(data.amount) : '';
+                field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
@@ -185,15 +183,9 @@ class Userbase extends React.Component {
                     }
                 },
                 //  报告列表
-<<<<<<< HEAD
                     checklist: (keys, items) => {
                             this.props.history.push(`/userquery/userbases/reportlist`);
                     },
-=======
-                checklist: (keys, items) => {
-                        this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
-                },
->>>>>>> 59b5e3ab0e596cb0c675a526fe70fd608a6dc89f
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {
@@ -201,11 +193,7 @@ class Userbase extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-<<<<<<< HEAD
-                        window.open(REPORT_URL + `?userId=` + items[0].userId + '&companyCode=' + items[0].companyCode);
-=======
                         window.open(REPORT_URL + `?userId=` + items[0].userId + `&companyCode=` + items[0].companyCode);
->>>>>>> 59b5e3ab0e596cb0c675a526fe70fd608a6dc89f
                     }
                 },
                 // 注销

@@ -53,9 +53,9 @@ class Reportlist extends React.Component {
                 field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
@@ -120,7 +120,6 @@ class Reportlist extends React.Component {
                 pageCode: 805120,
                 code: this.code,
                 searchParams: {
-                    companyCode: ''
                 },
             buttons: [{
                 name: '详情',

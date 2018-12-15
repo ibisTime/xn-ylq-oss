@@ -64,24 +64,25 @@ class WhiteList extends React.Component {
                 field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
                     }else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
                     }else {
                         return '';
                     }
                 }
         }, {
                 title: '所属客户',
-                field: 'companyName',
+                field: 'companyCode',
+                type: 'select',
                 search: true,
                 pageCode: '630115',
-                keyName: 'userId',
+                keyName: 'companyCode',
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
                 render: (v, data) => {
                     return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
-            }
+                }
         }, {
             title: '注册时间',
             field: 'createDatetime',
@@ -101,7 +102,6 @@ class WhiteList extends React.Component {
             rowKey: 'userId',
             pageCode: 805120,
             searchParams: {
-                companyCode: '',
                 isWhiteList: '1'
             },
             btnEvent: {

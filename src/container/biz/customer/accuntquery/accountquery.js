@@ -24,11 +24,22 @@ import { activateUser } from 'api/user';
 )
 class AccountQuery extends React.Component {
     render() {
-        const fields = [{
+        const fields = [ {
             title: '户名',
-            field: 'keyword',
-            render: (v, data) => data ? data.realName : '',
-            search: true
+            field: 'accountNumber',
+            type: 'select',
+            search: true,
+            pageCode: '802300',
+            params: {
+                status: '0',
+                type: 'NOT_P'
+            },
+            keyName: 'accountNumber',
+            valueName: '{{realName.DATA}}',
+            searchName: 'mobileForQuery',
+            render: (v, data) => {
+                return data ? data.realName : '';
+            }
         }, {
             title: '账户余额',
             field: 'amount',

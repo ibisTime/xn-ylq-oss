@@ -43,11 +43,13 @@ class BlackList extends React.Component {
             field: 'mobile',
             search: true
         }, {
+            title: '推荐人',
+            field: 'userReferee',
             render: (v, d) => {
                 if (d.refereeWay) {
-                    return d.refereeWay.name ? `${d.refereeWay.name}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                    return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
                 }else if (d.refereeUser) {
-                    return d.refereeUser.realName ? `${d.refereeUser.realName}(${typeDict[d.refereeType]})` : `-(${typeDict[d.refereeType]})`;
+                    return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
                 }else {
                     return '';
                 }
@@ -55,9 +57,10 @@ class BlackList extends React.Component {
         }, {
             title: '所属客户',
             field: 'companyCode',
+            type: 'select',
             search: true,
             pageCode: '630115',
-            keyName: 'userId',
+            keyName: 'companyCode',
             valueName: '{{realName.DATA}}-{{mobile.DATA}}',
             searchName: 'keyword',
             render: (v, data) => {
@@ -82,7 +85,6 @@ class BlackList extends React.Component {
             rowKey: 'userId',
             pageCode: 805120,
             searchParams: {
-                companyCode: '',
                 isBlackList: '1'
             },
             btnEvent: {
