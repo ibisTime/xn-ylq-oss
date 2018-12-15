@@ -27,13 +27,17 @@ class Recharges extends React.Component {
       title: '编号'
     }, {
         title: '户名',
-        field: 'realName',
+        field: 'accountNumber',
         type: 'select',
         search: true,
-        pageCode: '630115',
-        keyName: 'companyCode',
-        valueName: 'realName',
-        searchName: 'keyword',
+        pageCode: '802300',
+        params: {
+            status: '0',
+            type: 'NOT_P'
+        },
+        keyName: 'accountNumber',
+        valueName: '{{realName.DATA}}',
+        searchName: 'mobileForQuery',
         render: (v, data) => {
             return data ? data.realName : '';
         }

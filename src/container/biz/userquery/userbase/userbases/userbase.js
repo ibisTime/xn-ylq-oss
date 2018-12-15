@@ -133,8 +133,6 @@ class Userbase extends React.Component {
             fields,
             rowKey: 'userId',
             pageCode: 805120,
-            searchParams: {
-            },
             btnEvent: {
                 // 加入黑名单
                 addblack: (keys, items) => {
@@ -187,9 +185,9 @@ class Userbase extends React.Component {
                     }
                 },
                 //  报告列表
-                    checklist: (keys, items) => {
-                            this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
-                    },
+                checklist: (keys, items) => {
+                        this.props.history.push(`/userquery/reportlist?code=${keys[0]}`);
+                },
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {
@@ -197,7 +195,7 @@ class Userbase extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        window.open(REPORT_URL + `?userId=` + items[0].userId & `companyCode=` + items[0].companyCode);
+                        window.open(REPORT_URL + `?userId=` + items[0].userId + `&companyCode=` + items[0].companyCode);
                     }
                 },
                 // 注销
