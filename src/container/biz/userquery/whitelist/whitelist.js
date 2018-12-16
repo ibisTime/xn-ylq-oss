@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from 'antd';
-import { REPORT_URL } from 'common/js/config';
+import {Modal} from 'antd';
+import {REPORT_URL} from 'common/js/config';
 import {
     setTableData,
     setPagination,
@@ -11,20 +11,24 @@ import {
     cancelFetching,
     setSearchData
 } from '@redux/biz/userquery/whitelist';
-import { listWrapper } from 'common/js/build-list';
-import { showSucMsg, showWarnMsg, moneyFormat, getUserId } from 'common/js/util';
-import { activateJUser, getUserById, getUser, addwhite, addblack } from 'api/user';
+import {listWrapper} from 'common/js/build-list';
+import {showSucMsg, showWarnMsg, moneyFormat, getUserId} from 'common/js/util';
+import {activateJUser, getUserById, getUser, addwhite, addblack} from 'api/user';
+
 const typeDict = {
     'C': 'C端用户',
     'W': '渠道'
 };
+
 @listWrapper(
     state => ({
         ...state.userQueryWhiteList,
         parentCode: state.menu.subMenuCode
     }),
-    { setTableData, clearSearchParam, doFetching, setBtnList,
-        cancelFetching, setPagination, setSearchParam, setSearchData }
+    {
+        setTableData, clearSearchParam, doFetching, setBtnList,
+        cancelFetching, setPagination, setSearchParam, setSearchData
+    }
 )
 class WhiteList extends React.Component {
     rockOrActive(status, code) {
@@ -43,6 +47,7 @@ class WhiteList extends React.Component {
             }
         });
     }
+
     render() {
         const fields = [
             {
@@ -53,56 +58,65 @@ class WhiteList extends React.Component {
                     return data.realName ? data.realName : '';
                 }
             }, {
-            title: '登录账号',
-            field: 'loginName'
-        }, {
-            title: '手机号',
-            field: 'mobile',
-            search: true
-        }, {
+                title: '登录账号',
+                field: 'loginName'
+            }, {
+                title: '手机号',
+                field: 'mobile',
+                search: true
+            }, {
                 title: '推荐人',
                 field: 'userReferee',
                 render: (v, d) => {
                     if (d.refereeWay) {
                         return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
-                    }else if (d.refereeUser) {
+                    } else if (d.refereeUser) {
                         return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
-                    }else {
+                    } else {
                         return '';
                     }
                 }
-        }, {
+            }, {
                 title: '所属客户',
                 field: 'companyCode',
                 type: 'select',
                 search: true,
                 pageCode: '630115',
+                params: {
+                    companyCode: ''
+                },
                 keyName: 'companyCode',
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
                 render: (v, data) => {
                     return data.businessMan ? data.businessMan.realName + '-' + data.businessMan.mobile : '';
                 }
-        }, {
-            title: '注册时间',
-            field: 'createDatetime',
-            type: 'datetime'
-        }, {
-            title: '状态',
-            field: 'status',
-            type: 'select',
-            key: 'user_status',
-            search: true
-        }, {
-            title: '备注',
-            field: 'remark'
-        }];
+            }, {
+                title: '注册时间',
+                field: 'createDatetime',
+                type: 'datetime'
+            }, {
+                title: '状态',
+                field: 'status',
+                type: 'select',
+                key: 'user_status',
+                search: true
+            }, {
+                title: '备注',
+                field: 'remark'
+            }];
         return this.props.buildList({
             fields,
             rowKey: 'userId',
             pageCode: 805120,
             searchParams: {
                 isWhiteList: '1'
+            },
+            beforeSearch: (data) => {
+                if (data.companyCode === '' || !data.companyCode) {
+                    data.companyCode = '';
+                }
+                return data;
             },
             btnEvent: {
                 // 添加备注
@@ -111,7 +125,7 @@ class WhiteList extends React.Component {
                         showWarnMsg('请选择记录');
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
-                    }else {
+                    } else {
                         this.props.history.push(`/userquery/userqueryaddedit?code=${keys[0]}`);
                     }
                 },
@@ -122,7 +136,7 @@ class WhiteList extends React.Component {
                         showWarnMsg('请选择一条记录');
                     } else if (items[0].isWhiteList === '0') {
                         showWarnMsg('该用户已移除白名单');
-                    }else {
+                    } else {
                         Modal.confirm({
                             okText: '确认',
                             cancelText: '取消',
@@ -163,7 +177,7 @@ class WhiteList extends React.Component {
                 checklist: (keys, items) => {
                     this.props.history.push(`/userquery/whitelist/reportlist`);
                 }
-             }
+            }
         });
     }
 }

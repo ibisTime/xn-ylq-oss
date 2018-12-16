@@ -1,6 +1,6 @@
 import React from 'react';
 import {Modal} from 'antd';
-import { REPORT_URL } from 'common/js/config';
+import {REPORT_URL} from 'common/js/config';
 import {
     setTableData,
     setPagination,
@@ -75,11 +75,14 @@ class Userbase extends React.Component {
                 }
             }, {
                 title: '所属客户',
-                field: 'realName',
+                field: 'companyCode',
                 type: 'select',
                 search: true,
                 pageCode: '630115',
-                keyName: 'realName',
+                params: {
+                    companyCode: ''
+                },
+                keyName: 'companyCode',
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
                 render: (v, data) => {
@@ -131,6 +134,12 @@ class Userbase extends React.Component {
             fields,
             rowKey: 'userId',
             pageCode: 805120,
+            beforeSearch: (data) => {
+                if (data.companyCode === '' || !data.companyCode) {
+                    data.companyCode = '';
+                }
+                return data;
+            },
             btnEvent: {
                 // 加入黑名单
                 addblack: (keys, items) => {

@@ -122,7 +122,7 @@ class Reportlist extends React.Component {
                             companyCode: ''
                         },
             buttons: [{
-                            name: '报告详情',
+                            name: '详情',
                             code: 'detail',
                             handler: (keys, items) => {
                                 if (!keys.length) {

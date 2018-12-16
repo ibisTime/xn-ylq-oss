@@ -60,6 +60,9 @@ class BlackList extends React.Component {
             type: 'select',
             search: true,
             pageCode: '630115',
+            params: {
+                companyCode: ''
+            },
             keyName: 'companyCode',
             valueName: '{{realName.DATA}}-{{mobile.DATA}}',
             searchName: 'keyword',
@@ -86,6 +89,12 @@ class BlackList extends React.Component {
             pageCode: 805120,
             searchParams: {
                 isBlackList: '1'
+            },
+            beforeSearch: (data) => {
+                if (data.companyCode === '' || !data.companyCode) {
+                    data.companyCode = '';
+                }
+                return data;
             },
             btnEvent: {
                 deleteblack: (keys, items) => {

@@ -25,10 +25,7 @@ class IosPublish extends React.Component {
     render() {
         const fields = [ {
             field: 'remark',
-            title: '说明',
-            render: (v, data) => {
-                return data[0] ? data[0] : '';
-            }
+            title: '说明'
         }];
         return this.props.buildList({
             fields,
