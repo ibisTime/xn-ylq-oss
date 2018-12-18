@@ -80,6 +80,7 @@ class Userbase extends React.Component {
                 search: true,
                 pageCode: '630115',
                 params: {
+                  isAdmin: '1',
                     companyCode: ''
                 },
                 keyName: 'companyCode',
@@ -193,8 +194,14 @@ class Userbase extends React.Component {
                 },
                 //  报告列表
                     checklist: (keys, items) => {
-                            this.props.history.push(`/userquery/userbases/reportlist`);
-                    },
+                        if (!keys || !keys.length) {
+                          showWarnMsg('请选择记录');
+                        } else if (keys.length > 1) {
+                          showWarnMsg('请选择一条记录');
+                        } else {
+                          this.props.history.push(`/userquery/userbases/reportlist?companyCode=${items[0].companyCode}`);
+                        }
+                      },
                 //  最新报告
                 newreport: (keys, items) => {
                     if (!keys || !keys.length) {

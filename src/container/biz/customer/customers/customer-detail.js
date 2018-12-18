@@ -98,9 +98,6 @@ class CustomerDetail extends DetailUtil {
                 formatter: (v, data) => {
                     return data.company ? data.company.logo : '';
                 }
-            }, {
-                title: '备注',
-                field: 'remark'
             }];
         return this.buildDetail({
             fields,

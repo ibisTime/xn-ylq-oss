@@ -54,17 +54,13 @@ class Records extends React.Component {
       title: '取现金额',
       amount: true
     }, {
-      field: 'fee',
-      title: '手续费',
-      amount: true
-    }, {
       field: 'status',
       title: '状态',
       type: 'select',
       key: 'withdraw_status',
       search: true
     }, {
-      field: 'applyUser',
+      field: 'realName',
       title: '申请人'
     }, {
       field: 'applyDatetime',
@@ -74,22 +70,12 @@ class Records extends React.Component {
       render: dateTimeFormat,
       search: true
     }, {
-      field: 'approveUser',
-      title: '审核人'
-    }, {
       field: 'approveDatetime',
       title: '审核时间',
       type: 'date',
       rangedate: ['approveDateStart', 'approveDateEnd'],
       render: dateTimeFormat,
       search: true
-    }, {
-      field: 'payFee',
-      title: '打款手续费',
-      amount: true
-    }, {
-      field: 'payUser',
-      title: '回录人'
     }, {
       field: 'payDatetime',
       title: '回录时间',

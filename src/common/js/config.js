@@ -1,8 +1,10 @@
 export const SYSTEM_CODE = 'CD-YLQ000014';
 // 七牛上传地址
-export const UPLOAD_URL = 'http://up.qiniup.com';
+ export const UPLOAD_URL = 'http://up.qiniup.com';
+// export const UPLOAD_URL = 'images.sl.hichengdai.com';
 // 七牛图片前缀
-export const PIC_PREFIX = 'http://pihh877nu.bkt.clouddn.com/';
+export const PIC_PREFIX = 'http://images.sl.hichengdai.com/';
+// export const PIC_PREFIX = 'http://images.sl.hichengdai.com/';
 export const PIC_BASEURL_L = '?imageMogr2/auto-orient/thumbnail/!1000x1000r';
 
 // 系统根菜单编号

@@ -29,7 +29,7 @@ const typeDict = {
 class Reportlist extends React.Component {
     constructor(props) {
         super(props);
-        this.userId = getQueryString('userId', this.props.location.search) || '';
+      this.companyCode = getQueryString('companyCode', this.props.location.search) || '';
     }
     goBack = () => {
         this.props.history.go(-1);
@@ -119,7 +119,7 @@ class Reportlist extends React.Component {
                         pageCode: 805120,
                         code: this.code,
                         searchParams: {
-                            companyCode: ''
+                          companyCode: this.companyCode
                         },
             buttons: [{
                             name: '详情',

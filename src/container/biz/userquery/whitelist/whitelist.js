@@ -82,9 +82,10 @@ class WhiteList extends React.Component {
                 type: 'select',
                 search: true,
                 pageCode: '630115',
-                params: {
-                    companyCode: ''
-                },
+                    params: {
+                      isAdmin: '1',
+                      companyCode: ''
+                    },
                 keyName: 'companyCode',
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',

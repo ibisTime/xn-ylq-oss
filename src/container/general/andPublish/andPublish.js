@@ -21,6 +21,13 @@
           cancelFetching, setPagination, setSearchParam, setSearchData }
       )
       class andPublish extends React.Component {
+        constructor(props) {
+          super(props);
+          this.companyCode = getQueryString('companyCode', this.props.location.search) || '';
+          this.state = {
+            ...this.state
+          };
+        }
         goBack = () => {
           this.props.history.go(-1);
         }
@@ -38,6 +45,7 @@
             rowKey: 'id',
             pageCode: '623915',
             searchParams: {
+              companyCode: this.companyCode,
               type: 'android-c'
             },
             buttons: [{
@@ -49,7 +57,7 @@
                 } else if (keys.length > 1) {
                   showWarnMsg('请选择一条记录');
                 } else{
-                  this.props.history.push(`/customer/customers/androdition/edit?code=${keys[0]}&companyCode=${items[0].companyCode}`);
+                  this.props.history.push(`/customer/customers/androdition/edit?code=${keys[0]}`);
                 }
               }
             }, {

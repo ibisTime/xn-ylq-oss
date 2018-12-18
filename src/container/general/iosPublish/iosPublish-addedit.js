@@ -9,6 +9,7 @@ class IosPublishAddedit extends DetailUtil {
         super(props);
         this.code = getQueryString('code', this.props.location.search);
         this.view = !!getQueryString('v', this.props.location.search);
+      this.companyCode = getQueryString('companyCode', this.props.location.search) || '';
         this.state = {
             ...this.state
         };
@@ -35,6 +36,7 @@ class IosPublishAddedit extends DetailUtil {
             view: this.view,
             detailCode: 623916,
             editCode: 623910,
+            companyCode: this.companyCode,
             beforeSubmit: (data) => {
                 data.remark = this.state.pageData.remark;
                 return data;

@@ -94,9 +94,6 @@ class Customers extends React.Component {
                 type: 'select',
                 key: 'user_status',
                 search: true
-            }, {
-                title: '备注',
-                field: 'remark'
             }];
         return this.props.buildList({
             fields,
@@ -128,7 +125,13 @@ class Customers extends React.Component {
                 },
                 //  报告列表
                 checklist: (keys, items) => {
-                        this.props.history.push(`/customer/customers/reportlist`);
+                  if (!keys || !keys.length) {
+                    showWarnMsg('请选择记录');
+                  } else if (keys.length > 1) {
+                    showWarnMsg('请选择一条记录');
+                  } else {
+                    this.props.history.push(`/customer/customers/reportlist?companyCode=${items[0].companyCode}`);
+                  }
                 },
               // Android 版本
                 andition: (keys, items) => {

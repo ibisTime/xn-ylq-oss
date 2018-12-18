@@ -200,14 +200,6 @@ const ROUTES = [
     {
         path: '/userquery/userbase', component: asyncComponent(() => import('container/biz/userquery/userbase/userbases/userbase'))
     },
-    // 业务管理--用户查询--用户库--添加备注
-    {
-        path: '/userquery/userqueryaddedit', component: asyncComponent(() => import('container/biz/userquery/userquery-addedit/userquery-addedit'))
-    },
-    // 业务管理--用户查询--用户库--报告列表
-    {
-        path: '/userquery/userbases/reportlist', component: asyncComponent(() => import('container/biz/userquery/userbase/reportlist/reportlist'))
-    },
     // 业务管理--用户查询--用户库--最新报告
     {
         path: '/userquery/newreport', component: asyncComponent(() => import('container/biz/userquery/userbase/newreport/newreport'))
@@ -224,10 +216,6 @@ const ROUTES = [
     {
         path: '/userquery/whitelist/detail', component: asyncComponent(() => import('container/biz/userquery/whitelist/whitelist-detail'))
     },
-    // 业务管理--用户查询--白名单--报告列表
-    {
-        path: '/userquery/whitelist/reportlist', component: asyncComponent(() => import('container/biz/userquery/userbase/reportlist/reportlist'))
-    },
     // 业务管理--用户查询--黑名单
     {
         path: '/userquery/blacklist', component: asyncComponent(() => import('container/biz/userquery/blacklist/blacklist'))
@@ -235,10 +223,6 @@ const ROUTES = [
     // 业务管理--用户查询--黑名单--详情
     {
         path: '/userquery/blacklist/detail', component: asyncComponent(() => import('container/biz/userquery/blacklist/blacklist-detail'))
-    },
-    // 业务管理--用户查询--黑名单--报告列表
-    {
-        path: '/userquery/blacklist/reportlist', component: asyncComponent(() => import('container/biz/userquery/userbase/reportlist/reportlist'))
     },
     // 业务管理--系统参数管理--七牛图片参数
     {

@@ -78,6 +78,10 @@ class Userbase extends React.Component {
                 search: true,
                 pageCode: '630115',
                 keyName: 'companyCode',
+                    params: {
+                      isAdmin: '1',
+                      companyCode: ''
+                    },
                 valueName: '{{realName.DATA}}-{{mobile.DATA}}',
                 searchName: 'keyword',
                 render: (v, data) => {

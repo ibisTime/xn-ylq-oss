@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
-import { getQueryString, getUserId, showSucMsg, dateTimeFormat } from 'common/js/util';
+import { getQueryString, getUserId, showSucMsg, dateTimeFormat, getUserName } from 'common/js/util';
 import DetailUtil from 'common/js/build-detail';
 import fetch from 'common/js/fetch';
 
@@ -60,8 +60,10 @@ class RechargesAddEdit extends DetailUtil {
       view: this.view,
       detailCode: 802346,
       addCode: 802340,
-      beforeSubmit: (params) => {
+      beforeSubmit: (params, data) => {
         if (!this.code) {
+          params.applyUser = getUserName();
+          params.updater = getUserName();
           params.applyUserType = 'P';
         }
         return params;

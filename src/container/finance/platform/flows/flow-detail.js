@@ -41,13 +41,6 @@ class FlowsAddedit extends DetailUtil {
             type: 'select',
             key: 'jour_status'
         }, {
-            title: '对账人',
-            field: 'checkUser'
-        }, {
-            title: '对账时间',
-            field: 'checkDatetime',
-            type: 'datetime'
-        }, {
             title: '对应订单编号',
             field: 'refNo'
         }];
