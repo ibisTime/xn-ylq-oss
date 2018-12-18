@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use('/api', function (req, res) {
-  // 研发
+ // 研发
  // var url = 'http://120.26.6.213:7901/forward-service/api';
     // 测试
    var url = 'http://47.99.163.139:3701/forward-service/api';

@@ -130,6 +130,27 @@ class Customers extends React.Component {
                 checklist: (keys, items) => {
                         this.props.history.push(`/customer/customers/reportlist`);
                 },
+              // Android 版本
+                andition: (keys, items) => {
+                if (!keys || !keys.length) {
+                  showWarnMsg('请选择记录');
+                } else if (keys.length > 1) {
+                  showWarnMsg('请选择一条记录');
+                } else {
+                  this.props.history.push(`/customer/customers/androdition?companyCode=${items[0].companyCode}`);
+                }
+              },
+              // Android 版本
+              iosition: (keys, items) => {
+                if (!keys || !keys.length) {
+                  showWarnMsg('请选择记录');
+                } else if (keys.length > 1) {
+                  showWarnMsg('请选择一条记录');
+                } else {
+                  this.props.history.push(`/customer/customers/iosrodition?companyCode=${items[0].companyCode}`);
+                }
+              },
+
                 // 注销
                 rock: (keys, items) => {
                     if (!keys || !keys.length) {

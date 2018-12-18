@@ -51,7 +51,7 @@ class RechargesAddEdit extends DetailUtil {
       amount: true
     }, {
       field: 'applyNote',
-      title: '充值说明',
+      title: '打款备注',
       maxlength: 255
     }];
     let config = {

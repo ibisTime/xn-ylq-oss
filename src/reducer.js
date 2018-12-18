@@ -31,6 +31,10 @@ import { userFlows } from './redux/biz/user/flows';
 import { customerCustomers } from './redux/biz/customer/customers';
 // 客户管理--客户管理-报告列表
 import { customerReportLibrary } from './redux/biz/customer/reportlist/reportlibrary';
+// 客户管理--客户管理-android版本
+import { generalAndPublish } from './redux/general/andpublish';
+// 客户管理--客户管理-android版本
+import { generalIosPublish } from './redux/general/iospublish';
 // 客户管理--客户查询
 import { customerAccountQuery } from './redux/biz/customer/accountquery';
 // 客户管理--客户查询--流水查询
@@ -80,6 +84,8 @@ export default combineReducers({
   userAccounts,
   userAccountFlows,
   userFlows,
+  generalAndPublish,
+  generalIosPublish,
     customerCustomers,
     customerAccountQuery,
     customerSubAccount,

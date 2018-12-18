@@ -45,7 +45,7 @@ class Withdraw extends React.Component {
         }
     }, {
         field: 'payCardInfo',
-        title: '银行名称'
+        title: '开户行'
     }, {
       field: 'payCardNo',
       title: '银行卡号'
@@ -55,7 +55,7 @@ class Withdraw extends React.Component {
       amount: true
     }, {
       field: 'fee',
-      title: '手续费',
+      title: '取现手续费',
       amount: true
     }, {
       field: 'status',
@@ -81,12 +81,12 @@ class Withdraw extends React.Component {
       render: dateTimeFormat,
       search: true
     }, {
+      field: 'payFee',
+      title: '打款手续费',
+      amount: true
+    }, {
       field: 'payUser',
       title: '回录人'
-    }, {
-      field: 'payFee',
-      title: '支付手续费',
-      amount: true
     }, {
       field: 'payDatetime',
       title: '回录时间',

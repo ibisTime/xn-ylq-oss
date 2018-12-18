@@ -157,6 +157,22 @@ const ROUTES = [
     {
         path: '/customer/customers/reportlist', component: asyncComponent(() => import('container/biz/customer/reportlist/reportlist'))
     },
+  // 业务管理--客户管理--android版本管理
+  {
+    path: '/customer/customers/androdition', component: asyncComponent(() => import('container/general/andPublish/andPublish'))
+  },
+  // 业务管理--客户管理--android版本管理--修改
+  {
+    path: '/customer/customers/androdition/edit', component: asyncComponent(() => import('container/general/andPublish/andPublish-addedit'))
+  },
+  // 业务管理--客户管理--Ios版本管理
+  {
+    path: '/customer/customers/iosrodition', component: asyncComponent(() => import('container/general/iosPublish/iosPublish'))
+  },
+  // 业务管理--客户管理--Ios版本管理--修改
+  {
+    path: '/customer/customers/iosrodition/edit', component: asyncComponent(() => import('container/general/iosPublish/iosPublish-addedit'))
+  },
     // 客户管理-新增备注
     {
         path: '/customer/customers/addedit', component: asyncComponent(() => import('container/biz/customer/customer-addedit/customer-addedit'))
@@ -234,12 +250,16 @@ const ROUTES = [
     },
     // 业务管理--系统参数管理--认证接口费用管理
     {
-        path: '/general/andmanagement', component: asyncComponent(() => import('container/general/andmanagement'))
+        path: '/general/andmanagement', component: asyncComponent(() => import('container/general/andmanagement/andmanagement'))
     },
     // 业务管理--系统参数管理--认证接口费用管理--修改
     {
-        path: '/general/andmanagement/addedit', component: asyncComponent(() => import('container/general/andmanagement-addedit'))
+        path: '/general/andmanagement/addedit', component: asyncComponent(() => import('container/general/andmanagement/andmanagement-addedit'))
     },
+  // 业务管理--系统参数管理--平台认证费用管理
+  {
+    path: '/general/platmanagement', component: asyncComponent(() => import('container/general/platmanagement/platmanagement'))
+  },
     // 业务管理--系统参数管理--文章管理
     {
         path: '/general/articlemanagement', component: asyncComponent(() => import('container/public/articlemanagement/articlemanagement'))

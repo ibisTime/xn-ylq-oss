@@ -31,12 +31,12 @@ class WithdrawAddedit extends DetailUtil {
       required: true
     }, {
       field: 'amount1',
-      title: '金额',
+      title: '取现金额',
       _keys: ['amount'],
       amount: true
     }, {
       field: 'fee',
-      title: '手续费',
+      title: '取现手续费',
       amount: true
     }, {
       field: 'channelType',
@@ -45,7 +45,7 @@ class WithdrawAddedit extends DetailUtil {
       key: 'channel_type'
     }, {
         field: 'payCardInfo',
-        title: '银行名称'
+        title: '开户行'
     }, {
       field: 'payCardNo',
       title: '银行卡号'
@@ -60,7 +60,7 @@ class WithdrawAddedit extends DetailUtil {
       type: 'datetime'
     }, {
       field: 'applyNote',
-      title: '申请说明',
+      title: '申请备注',
       type: 'textarea',
       normalArea: true,
       required: true
@@ -133,7 +133,7 @@ class WithdrawAddedit extends DetailUtil {
         title: '审核意见'
       }, {
         field: 'payResult',
-        title: '支付结果',
+        title: '是否支付',
         type: 'select',
         data: [{
           dkey: '0',
@@ -165,7 +165,7 @@ class WithdrawAddedit extends DetailUtil {
       }, {
         field: 'payNote',
         title: '打款备注',
-        required: true,
+        required: false,
         readonly: false
       }]);
       config.buttons = [{

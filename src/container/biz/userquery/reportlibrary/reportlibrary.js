@@ -60,17 +60,17 @@ class Userbase extends React.Component {
                 field: 'mobile',
                 search: true
             }, {
-                title: '推荐人',
-                field: 'userReferee',
-                render: (v, d) => {
-                    if (d.refereeWay) {
-                        return d.refereeWay.name ? `${d.refereeWay.name}-${d.refereeWay.mobile}(${typeDict[d.refereeType]})` : `${d.refereeWay.mobile}-(${typeDict[d.refereeType]})`;
-                    }else if (d.refereeUser) {
-                        return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
-                    }else {
-                        return '';
-                    }
-                }
+            title: '推荐人',
+            field: 'userReferee',
+            render: (v, d) => {
+              if (d.refereeWay) {
+                return `${d.refereeWay.name}-(${typeDict[d.refereeType]})`;
+              }else if (d.refereeUser) {
+                return d.refereeUser.realName ? `${d.refereeUser.realName}-${d.refereeUser.mobile}(${typeDict[d.refereeType]})` : `${d.refereeUser.mobile}-(${typeDict[d.refereeType]})`;
+              }else {
+                return '';
+              }
+            }
             }, {
                 title: '所属客户',
                 field: 'companyCode',

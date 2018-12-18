@@ -84,12 +84,12 @@ class Records extends React.Component {
       render: dateTimeFormat,
       search: true
     }, {
+      field: 'payFee',
+      title: '打款手续费',
+      amount: true
+    }, {
       field: 'payUser',
       title: '回录人'
-    }, {
-      field: 'payFee',
-      title: '支付手续费',
-      amount: true
     }, {
       field: 'payDatetime',
       title: '回录时间',
