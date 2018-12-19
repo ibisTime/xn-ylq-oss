@@ -111,7 +111,7 @@ class Customers extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/customers/amount?userId=${keys[0]}`);
+                        this.props.history.push(`/customer/customers/amount?userId=${keys[0]}&companyCode=${items[0].companyCode}`);
                     }
                 },
                 detail: (keys, items) => {

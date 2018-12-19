@@ -13,7 +13,7 @@ import {
 } from '@redux/biz/customer/accountquerydetail';
 import fetch from 'common/js/fetch';
 import { listWrapper } from 'common/js/build-list';
-import {getQueryString, moneyFormat, dateTimeFormat} from 'common/js/util';
+import {getQueryString, moneyFormat, dateTimeFormat, getCompanyCode, getUserId} from 'common/js/util';
 @listWrapper(
     state => ({
         ...state.accountQueryDetail,
@@ -25,7 +25,9 @@ import {getQueryString, moneyFormat, dateTimeFormat} from 'common/js/util';
 class accountQuery extends React.Component {
     constructor(props) {
         super(props);
-        this.userId = getQueryString('userId', this.props.location.search) || '';
+      this.companyCode = getQueryString('companyCode', this.props.location.search) || '';
+      console.log(this.companyCode);
+      this.userId = getQueryString('userId', this.props.location.search) || '';
         this.state = {
             userData: {
                 realName: '',
@@ -42,6 +44,7 @@ class accountQuery extends React.Component {
         Promise.all([
             fetch(802301, {
                 userId: this.userId,
+              companyCode: this.companyCode,
                 type: 'B'
             })
         ]).then(([accountData]) => {
@@ -61,8 +64,11 @@ class accountQuery extends React.Component {
         }, {
             title: '业务类型',
             field: 'bizType',
-            type: 'select',
-            key: 'biz_type'
+           listCode: '623907',
+           params: { 'companyCode': this.companyCode },
+           keyName: 'dkey',
+           valueName: 'dvalue',
+            type: 'select'
         }, {
             title: '变动金额',
             field: 'transAmountString',
@@ -122,6 +128,7 @@ class accountQuery extends React.Component {
                             noSelect: true,
                             pageCode: 802320,
                             searchParams: {
+                              companyCode: this.companyCode,
                                 userId: this.userId
                             },
                             buttons: []

@@ -11,7 +11,7 @@ import {
     setSearchData
 } from '@redux/biz/customer/accountquery';
 import { listWrapper } from 'common/js/build-list';
-import { showWarnMsg, moneyFormat } from 'common/js/util';
+import { showWarnMsg, moneyFormat, getCompanyCode } from 'common/js/util';
 import { activateUser } from 'api/user';
 
 @listWrapper(
@@ -65,6 +65,7 @@ class AccountQuery extends React.Component {
             rowKey: 'userId',
             pageCode: 802300,
             searchParams: {
+              companyCode: getCompanyCode(),
                 type: 'B'
             },
             btnEvent: {
@@ -75,7 +76,7 @@ class AccountQuery extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/user/users/accounts?code=${keys[0]}`);
+                        this.props.history.push(`/user/users/accounts?code=${keys[0]}&companyCode=${items[0].companyCode}`);
                     }
                 },
                 // 详情
@@ -85,7 +86,7 @@ class AccountQuery extends React.Component {
                     } else if (keys.length > 1) {
                         showWarnMsg('请选择一条记录');
                     } else {
-                        this.props.history.push(`/customer/accountquery/detail?userId=${keys[0]}`);
+                        this.props.history.push(`/customer/accountquery/detail?userId=${keys[0]}&companyCode=${items[0].businessMan.companyCode}`);
                     }
                 }
             }
